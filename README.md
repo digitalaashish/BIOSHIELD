@@ -136,8 +136,6 @@ Developed as a capstone project at **Charles Darwin University (CDU)**, May 2026
 | Taniya | Documentation |
 | Rushabh Savaj | Testing & QA |
 
-**Client:** Dr. Anne Walters — Director, NAPCaRN & CEO, Anima Co.
-
 ---
 
 ## License
