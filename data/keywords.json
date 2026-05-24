@@ -1,0 +1,84 @@
+{
+  "categories": [
+    {
+      "id": "compliance_enforcement",
+      "name": "Compliance / Enforcement",
+      "keywords": ["compliance", "enforcement", "adherence", "follow rules", "follow restrictions", "regulatory compliance", "biosecurity compliance", "enforce restrictions", "maintain adherence", "industry compliance", "non-compliance", "reporting failures", "cooperative and non-cooperative sites", "patchy adherence", "movement restriction enforcement", "control enforcement"]
+    },
+    {
+      "id": "tracing",
+      "name": "Tracing",
+      "keywords": ["tracing", "trace mapping", "trace pathways", "movement pathway verification", "track exposure", "follow movements", "map spread", "re-trace", "correct tracing errors", "identify indirect linkages", "complex trace network", "cross-jurisdiction tracing", "trace completion"]
+    },
+    {
+      "id": "surveillance",
+      "name": "Surveillance",
+      "keywords": ["surveillance", "monitoring", "observation", "property checks", "high-risk monitoring", "non-high-risk monitoring", "follow-up visits", "detect infections", "identify infections", "exposure monitoring", "gap closure", "finish property visits", "confirm exposure footprint"]
+    },
+    {
+      "id": "inspections",
+      "name": "Inspections",
+      "keywords": ["inspections", "site visits", "re-inspections", "property inspections", "field checks", "on-site verification", "final inspections", "prioritised inspections", "complete inspections", "follow-up inspections"]
+    },
+    {
+      "id": "orc",
+      "name": "ORC (Owner Reimbursement Claims)",
+      "keywords": ["ORC", "grower engagement", "cooperation", "maintain participation", "eligibility assessment", "compensation discussion", "resolve frustration", "communication with growers", "ensure participation", "maintain cooperation", "clarify compensation", "manage disputes", "address grower concerns", "compensation timelines"]
+    },
+    {
+      "id": "removals",
+      "name": "Removals",
+      "keywords": ["removal", "remove material", "remove infected material", "schedule removal", "prioritise removal", "material extraction", "operational execution", "operational rollout", "removal readiness", "reschedule removal", "adjust removal schedules", "re-sequence removal"]
+    },
+    {
+      "id": "disposals_destruction",
+      "name": "Disposals / Destruction",
+      "keywords": ["disposal", "destruction", "destruction operations", "deep burial", "alternative destruction methods", "disposal planning", "disposal site capacity", "disposal logistics", "safe disposal", "disposal readiness", "staging operations", "temporary storage", "manage biosecurity risk", "decontamination", "destruction confirmation", "disposal site routes"]
+    },
+    {
+      "id": "operations_icc",
+      "name": "Operations / ICC / Operational Delivery",
+      "keywords": ["operations", "operational management", "operational delivery", "ICC", "coordinate operations", "staff allocation", "workflow optimisation", "manage workload", "high operational tempo", "prioritised scheduling", "dual pressures", "manage multiple workstreams", "planning delays", "decision-making efficiency", "concurrent operations", "operational rollout", "operational pressure", "contingency planning", "transition to stand down"]
+    },
+    {
+      "id": "industry_engagement",
+      "name": "Industry Engagement / Stakeholder Engagement",
+      "keywords": ["industry engagement", "stakeholder engagement", "regulatory bodies", "industry bodies", "advocacy groups", "maintain confidence", "alignment", "coordination", "messaging to stakeholders", "stakeholder management", "reputation management", "grower confidence", "engagement with local industry", "liaison with peak bodies", "state engagement", "national decision making"]
+    },
+    {
+      "id": "communications_media",
+      "name": "Communications / Media / Public",
+      "keywords": ["communications", "media management", "public messaging", "public confidence", "manage criticism", "transparency", "perception management", "awareness", "manage risk perception", "messaging to industry", "messaging to community", "community confidence", "communication strategies", "communication planning", "communication oversight", "communication and media management"]
+    },
+    {
+      "id": "response_plan",
+      "name": "Response Plan / Approval / Authorisation",
+      "keywords": ["response plan", "operational plan", "government approval", "formal approval", "plan operationalisation", "schedule removals", "implement operations", "finalise response plan", "operational execution", "plan sign-off", "secure response plan approval", "confirm eradication pathway", "residual risk", "reporting to Commonwealth government", "proof of freedom", "capture lessons learned post-response"]
+    },
+    {
+      "id": "containment",
+      "name": "Containment / Biosecurity / Movement Restrictions",
+      "keywords": ["containment", "biosecurity", "control zones", "quarantine", "movement restrictions", "restrictions", "enforce restrictions", "strengthen enforcement", "secure uncooperative sites", "adjust restrictions", "prevent spread", "manage defiance", "patchy adherence", "maintain participation", "containment enforcement", "interstate containment", "cross-jurisdiction enforcement"]
+    },
+    {
+      "id": "transport_logistics",
+      "name": "Transport / Logistics / Transport Controls",
+      "keywords": ["transport", "transport controls", "route management", "route sensitivity", "timing adjustments", "logistics", "disposal site routes", "scheduling", "staging", "temporary holding", "population proximity", "covered loads", "escort vehicles", "operational sequencing", "adjust logistics"]
+    },
+    {
+      "id": "workforce_sustainability",
+      "name": "Workforce Sustainability / Recovery",
+      "keywords": ["workforce sustainability", "staff welfare", "maintain capacity", "manage workload", "resource allocation", "recovery", "resource sustainability", "maintain operational capability", "staff rotation", "operational recovery", "post-response workforce management"]
+    },
+    {
+      "id": "storage",
+      "name": "Storage Processes",
+      "keywords": ["storage", "temporary storage", "storage safety", "biosecure storage", "storage protocols", "containment of material", "storage management"]
+    },
+    {
+      "id": "decontamination",
+      "name": "Decontamination",
+      "keywords": ["decontamination", "sanitisation", "clean-up", "biosecurity cleaning", "disinfecting", "material decontamination", "site decontamination", "equipment cleaning", "reduce contamination risk"]
+    }
+  ]
+}

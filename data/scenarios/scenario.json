@@ -1,0 +1,1364 @@
+{
+  "title": "PLANTPLAN Emergency Plant Pest Response Exercise",
+  "framework": "PLANTPLAN",
+  "version": "2.2",
+  "phases": {
+    "phase1": {
+      "id": "phase1",
+      "phaseNumber": 1,
+      "title": "Phase 1 \u2013 Initial Report",
+      "narrative": [
+        "A high-value crop property has reported unusual leaf symptoms that do not match any known endemic pest or disease profile.",
+        "A field team has conducted an initial inspection and collected diagnostic samples, which have been submitted for urgent analysis. Results are pending.",
+        "At this stage, one property is suspected to be infected.",
+        "Preliminary tracing has identified 10 high-risk properties linked through recent movements of labour, shared equipment, and plant material.",
+        "Temporary containment measures have been put in place on the affected property, including movement restrictions and on-farm biosecurity protocols.",
+        "No formal restrictions have yet been applied to linked properties.",
+        "An Incident Control Centre (ICC) has not yet been formally established, but initial planning discussions are underway."
+      ],
+      "question": "Your team has just received this initial situation report. As the biosecurity response team, what are the immediate actions you need to take?",
+      "criticalElements": [
+        {
+          "id": "ce1_reporting",
+          "name": "Reporting to the Commonwealth Government",
+          "keywords": [
+            "Report",
+            "Commonwealth Government",
+            "ACCPO",
+            "Australian Chief Plant Protection Officer",
+            "notification",
+            "Biosecurity alert",
+            "incident report",
+            "mandatory reporting",
+            "regulatory reporting",
+            "DAFF",
+            "notify"
+          ]
+        },
+        {
+          "id": "ce1_surveillance",
+          "name": "Surveillance",
+          "keywords": [
+            "surveillance",
+            "monitoring",
+            "adjacent properties",
+            "community reporting",
+            "field inspection",
+            "sample collection",
+            "data collection",
+            "property assessment",
+            "inspect",
+            "investigation",
+            "detection"
+          ]
+        },
+        {
+          "id": "ce1_containment",
+          "name": "Containment",
+          "keywords": [
+            "prevent spread",
+            "contain",
+            "movement restrictions",
+            "movement orders",
+            "quarantine",
+            "biosecurity zones",
+            "restricted access",
+            "decontamination",
+            "stop movement",
+            "emergency control",
+            "isolation",
+            "protective measures",
+            "cordon"
+          ]
+        }
+      ],
+      "branches": {
+        "missed_reporting": "phase2A",
+        "missed_surveillance": "phase2B",
+        "missed_containment": "phase2C",
+        "success": "phase2_success"
+      }
+    },
+    "phase2A": {
+      "id": "phase2A",
+      "phaseNumber": 2,
+      "title": "Phase 2A \u2013 Failure to Report to the Commonwealth Government",
+      "narrative": [
+        "Reporting to the Commonwealth Government was delayed pending diagnostic confirmation. During this time, informal discussions occurred at the state level, but no formal national notification was made.",
+        "By the time reporting occurs, four properties are now confirmed or strongly suspected to be infected, including three in a neighbouring state.",
+        "A total of 15 high-risk properties have been identified. Of these, 5 properties (33%) have been inspected.",
+        "Containment measures have been applied inconsistently. No coordinated cross-border containment strategy has been agreed.",
+        "Industry confidence is declining. Some industry representatives have begun direct engagement with the Minister's office.",
+        "An ICC has been established but is operating under increased scrutiny, with coordination challenges emerging between jurisdictions.",
+        "No removal or destruction has commenced."
+      ],
+      "question": "The situation has escalated due to delayed Commonwealth reporting. What immediate corrective actions must your team take now to address containment, movement restrictions, and tracing?",
+      "criticalElements": [
+        {
+          "id": "ce2A_containment",
+          "name": "Containment",
+          "keywords": [
+            "containment",
+            "quarantine",
+            "isolation",
+            "restrict access",
+            "cordon",
+            "biosecurity",
+            "enforce",
+            "on-site controls",
+            "stop spread",
+            "restrict movement",
+            "prevent spread",
+            "perimeter control",
+            "buffer zone",
+            "infected site",
+            "emergency measures"
+          ]
+        },
+        {
+          "id": "ce2A_movement",
+          "name": "Movement Restrictions",
+          "keywords": [
+            "movement restrictions",
+            "bans",
+            "prohibitions",
+            "transport controls",
+            "movement orders",
+            "legislation",
+            "regulation",
+            "embargo",
+            "no-trade",
+            "movement permit",
+            "restricted access",
+            "compliance",
+            "enforcement",
+            "produce control",
+            "equipment control",
+            "interstate control"
+          ]
+        },
+        {
+          "id": "ce2A_tracing",
+          "name": "Tracing",
+          "keywords": [
+            "tracing",
+            "traceability",
+            "track movements",
+            "movement analysis",
+            "contact tracing",
+            "mapping spread",
+            "pathway analysis",
+            "linkages",
+            "epidemiology",
+            "risk assessment",
+            "source identification",
+            "infection pathway",
+            "movement history"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase3A1",
+        "missed_containment": "phase3A1",
+        "missed_movement": "phase3A1",
+        "missed_tracing": "phase3A1"
+      }
+    },
+    "phase2B": {
+      "id": "phase2B",
+      "phaseNumber": 2,
+      "title": "Phase 2B \u2013 Failure in Early Surveillance",
+      "narrative": [
+        "Initial surveillance efforts following the first detection were limited and not effectively prioritised, resulting in delays in inspecting high-risk linked properties.",
+        "As a result, eight properties are now confirmed or strongly suspected to be infected.",
+        "A total of 20 high-risk properties have been identified. Of these, 10 (50%) have been inspected, leaving significant high-risk sites unchecked.",
+        "Trace linkage has reached 40%, but remains incomplete, with key movement pathways still unverified.",
+        "The ICC is operational but facing challenges due to fragmented situational awareness.",
+        "Industry stakeholders are engaged but express frustration at inconsistent guidance.",
+        "No removal or destruction has commenced."
+      ],
+      "question": "Surveillance failures have allowed the outbreak to spread to 8 properties. What critical actions must your team take to address surveillance, containment, ICC coordination, and industry engagement?",
+      "criticalElements": [
+        {
+          "id": "ce2B_surveillance",
+          "name": "Surveillance",
+          "keywords": [
+            "surveillance",
+            "monitoring",
+            "inspection",
+            "site visits",
+            "property checks",
+            "high-risk properties",
+            "priority sites",
+            "reconnaissance",
+            "assessment",
+            "field visits",
+            "detection",
+            "early detection",
+            "risk-based inspections",
+            "audit"
+          ]
+        },
+        {
+          "id": "ce2B_containment",
+          "name": "Containment",
+          "keywords": [
+            "containment",
+            "quarantine",
+            "restrict movement",
+            "stop spread",
+            "isolate",
+            "biosecurity measures",
+            "movement control",
+            "infection control",
+            "rapid response",
+            "enforce restrictions",
+            "block spread"
+          ]
+        },
+        {
+          "id": "ce2B_icc",
+          "name": "ICC Coordination",
+          "keywords": [
+            "ICC",
+            "coordination",
+            "communication",
+            "collaboration",
+            "teamwork",
+            "information sharing",
+            "situation awareness",
+            "briefing",
+            "operational planning",
+            "team coordination",
+            "inter-agency coordination",
+            "internal communication",
+            "decision-making"
+          ]
+        },
+        {
+          "id": "ce2B_industry",
+          "name": "Industry Engagement",
+          "keywords": [
+            "industry engagement",
+            "stakeholder engagement",
+            "grower communication",
+            "outreach",
+            "consultation",
+            "collaboration with industry",
+            "advisory",
+            "liaison",
+            "education",
+            "information sharing",
+            "compliance support",
+            "industry cooperation",
+            "feedback"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase3B",
+        "missed_surveillance": "phase3B",
+        "missed_icc": "phase3B",
+        "missed_industry": "phase3B"
+      }
+    },
+    "phase2C": {
+      "id": "phase2C",
+      "phaseNumber": 2,
+      "title": "Phase 2C \u2013 Failure in Initial Containment",
+      "narrative": [
+        "While initial detection and reporting occurred, containment measures were limited to the suspect property, and broader precautionary restrictions were not implemented early.",
+        "As a result, 4 properties are now confirmed or strongly suspected to be infected, including one interstate property.",
+        "A total of 15 high-risk properties have been identified. 5 properties (33%) have been inspected.",
+        "Containment measures have not yet been broadly applied beyond inspected sites, meaning several properties remain potentially infectious.",
+        "Industry engagement is moderate (~65% awareness); some growers express confusion or frustration about inconsistent restrictions.",
+        "ICC is established and operational, but must manage a more complex situation due to uncontained potential spread and interstate implications.",
+        "No removal or destruction activities have begun."
+      ],
+      "question": "Containment failures have allowed spread to an interstate property. What must your team prioritise to address industry engagement, containment, and cross-border coordination?",
+      "criticalElements": [
+        {
+          "id": "ce2C_industry",
+          "name": "Industry Engagement",
+          "keywords": [
+            "industry engagement",
+            "stakeholder engagement",
+            "grower communication",
+            "consultation",
+            "liaison",
+            "outreach",
+            "collaboration with industry",
+            "partnership",
+            "advisory",
+            "reporting support",
+            "information sharing",
+            "education",
+            "industry cooperation",
+            "feedback",
+            "outreach program"
+          ]
+        },
+        {
+          "id": "ce2C_containment",
+          "name": "Containment",
+          "keywords": [
+            "containment",
+            "quarantine",
+            "isolate",
+            "restrict movement",
+            "stop spread",
+            "biosecurity measures",
+            "movement control",
+            "infection control",
+            "prevent transmission",
+            "secure property",
+            "rapid response",
+            "enforce restrictions",
+            "block spread",
+            "limit dispersal",
+            "outbreak management",
+            "emergency measures"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase3C",
+        "missed_industry": "phase3C",
+        "missed_containment": "phase3C"
+      }
+    },
+    "phase2_success": {
+      "id": "phase2_success",
+      "phaseNumber": 2,
+      "title": "Phase 2 \u2013 Escalation & National Coordination",
+      "narrative": [
+        "Your team successfully reported to the Commonwealth, established surveillance protocols, and implemented containment measures.",
+        "As a result, the situation is well-managed. Only 2 properties are confirmed infected.",
+        "A total of 12 high-risk properties have been identified. 10 (83%) have been inspected with no additional detections.",
+        "Trace linkage is at 60% and improving.",
+        "Containment measures are consistently applied across all identified properties.",
+        "Industry engagement is strong, with 85% of growers in the region aware and cooperating.",
+        "ICC has been formally established and is functioning effectively.",
+        "CCEPP has been briefed and national coordination is underway."
+      ],
+      "question": "Excellent initial response. The outbreak is contained to 2 properties. As the response escalates to national level with CCEPP involvement, what are your team's key priorities for the next operational period?",
+      "criticalElements": [
+        {
+          "id": "ce2s_ccepp",
+          "name": "CCEPP Activation & National Coordination",
+          "keywords": [
+            "CCEPP",
+            "national coordination",
+            "Commonwealth coordination",
+            "inter-jurisdictional",
+            "national response",
+            "federal coordination",
+            "multi-jurisdictional",
+            "national plan",
+            "PLANTPLAN activation",
+            "emergency committee"
+          ]
+        },
+        {
+          "id": "ce2s_removal",
+          "name": "Removal and Destruction Planning",
+          "keywords": [
+            "removal",
+            "destruction",
+            "eradication",
+            "disposal",
+            "host plant removal",
+            "infected material",
+            "fumigation",
+            "treatment",
+            "EPA",
+            "waste disposal",
+            "destroy crops",
+            "eliminate infected"
+          ]
+        },
+        {
+          "id": "ce2s_compensation",
+          "name": "Compensation Framework",
+          "keywords": [
+            "compensation",
+            "cost-sharing",
+            "EADRA",
+            "reimbursement",
+            "payment",
+            "grower support",
+            "financial assistance",
+            "industry levy",
+            "cost recovery",
+            "emergency cost"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase3_success",
+        "missed_ccepp": "phase3A1",
+        "missed_removal": "phase3B",
+        "missed_compensation": "phase3C"
+      }
+    },
+    "phase3A1": {
+      "id": "phase3A1",
+      "phaseNumber": 3,
+      "title": "Phase 3A1 \u2013 Delayed Commonwealth Coordination",
+      "narrative": [
+        "Reporting to the Commonwealth has now occurred, but early delays have created mistrust. The CCEPP has not yet been convened, leading to further delays in operational activities.",
+        "Nine properties are now confirmed or strongly suspected infected, including four interstate properties.",
+        "High-risk properties: 22 identified; 7 inspected (32%).",
+        "Containment measures have been inconsistently applied, and some infected properties continue trading produce and equipment.",
+        "Industry frustration is growing; some growers are bypassing state authorities and contacting the Minister directly.",
+        "No removal or destruction has occurred, although planning has commenced. Early discussions with the EPA indicate issues with locating appropriate disposal sites.",
+        "Ministerial briefings are reactive; pressure for coordinated national action is increasing."
+      ],
+      "question": "National coordination has been delayed due to earlier reporting failures. The outbreak now spans interstate. What urgent actions must your team take to establish proper CCEPP coordination, manage the Minister's pressure, and accelerate removal/disposal planning?",
+      "criticalElements": [
+        {
+          "id": "ce3A1_ccepp",
+          "name": "CCEPP Activation",
+          "keywords": [
+            "CCEPP",
+            "national coordination",
+            "convene",
+            "emergency committee",
+            "Commonwealth",
+            "multi-jurisdictional",
+            "national response",
+            "inter-jurisdictional",
+            "federal",
+            "PLANTPLAN"
+          ]
+        },
+        {
+          "id": "ce3A1_removal",
+          "name": "Removal and Destruction",
+          "keywords": [
+            "removal",
+            "destruction",
+            "disposal",
+            "EPA",
+            "eradication",
+            "infected material",
+            "host plant",
+            "fumigation",
+            "waste",
+            "destroy",
+            "eliminate",
+            "decontaminate"
+          ]
+        },
+        {
+          "id": "ce3A1_ministerial",
+          "name": "Ministerial Briefing",
+          "keywords": [
+            "ministerial briefing",
+            "Minister",
+            "brief",
+            "update",
+            "communication",
+            "media",
+            "public communication",
+            "press release",
+            "transparency",
+            "statement",
+            "announcement"
+          ]
+        },
+        {
+          "id": "ce3A1_compensation",
+          "name": "Compensation",
+          "keywords": [
+            "compensation",
+            "EADRA",
+            "cost-sharing",
+            "grower support",
+            "financial assistance",
+            "reimbursement",
+            "payment",
+            "industry levy",
+            "emergency cost"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase4_main",
+        "missed_ccepp": "phase4_delayed",
+        "missed_removal": "phase4_spread"
+      }
+    },
+    "phase3B": {
+      "id": "phase3B",
+      "phaseNumber": 3,
+      "title": "Phase 3B \u2013 Escalated Spread from Surveillance Failure",
+      "narrative": [
+        "Surveillance improvements have been implemented but the delayed start means 15 properties are now confirmed infected, spread across two states.",
+        "High-risk properties: 28 identified; 18 inspected (64%).",
+        "Industry frustration has escalated. Deliberate non-compliance by some frustrated growers has resulted in greater spread, including confirmed interstate movement of infected plant material.",
+        "ICC coordination has improved but is still managing the backlog from earlier fragmented reporting.",
+        "CCEPP has been convened and national response is underway.",
+        "Removal and destruction planning has commenced with EPA engaged.",
+        "Ministerial pressure is significant, with opposition questioning the response timeline."
+      ],
+      "question": "Deliberate non-compliance by frustrated growers is spreading the outbreak interstate. CCEPP is now active. What are your priorities for managing industry compliance, accelerating inspections, and coordinating the national response?",
+      "criticalElements": [
+        {
+          "id": "ce3B_compliance",
+          "name": "Industry Compliance & Enforcement",
+          "keywords": [
+            "compliance",
+            "enforcement",
+            "non-compliance",
+            "legal action",
+            "penalties",
+            "biosecurity act",
+            "enforcement officers",
+            "legal consequences",
+            "mandatory compliance",
+            "regulatory action",
+            "prosecution",
+            "fines"
+          ]
+        },
+        {
+          "id": "ce3B_surveillance",
+          "name": "Accelerated Surveillance",
+          "keywords": [
+            "surveillance",
+            "accelerate",
+            "urgent inspection",
+            "rapid assessment",
+            "additional inspectors",
+            "bulk inspection",
+            "priority inspection",
+            "resource surge",
+            "field teams",
+            "inspection program",
+            "high-risk prioritisation"
+          ]
+        },
+        {
+          "id": "ce3B_removal",
+          "name": "Removal and Destruction",
+          "keywords": [
+            "removal",
+            "destruction",
+            "disposal",
+            "EPA",
+            "eradication",
+            "infected material",
+            "host plant",
+            "fumigation",
+            "waste disposal",
+            "destroy crops",
+            "eliminate infected",
+            "decontaminate site"
+          ]
+        },
+        {
+          "id": "ce3B_comms",
+          "name": "Public and Industry Communications",
+          "keywords": [
+            "communication",
+            "public statement",
+            "media",
+            "press conference",
+            "industry update",
+            "grower briefing",
+            "transparency",
+            "media release",
+            "community engagement",
+            "public information",
+            "factsheet",
+            "hotline"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase4_main",
+        "missed_compliance": "phase4_spread",
+        "missed_removal": "phase4_spread"
+      }
+    },
+    "phase3C": {
+      "id": "phase3C",
+      "phaseNumber": 3,
+      "title": "Phase 3C \u2013 Interstate Spread from Containment Failure",
+      "narrative": [
+        "Industry engagement has improved but early confusion means that several properties continued operating and moving produce for days before restrictions took effect.",
+        "Six properties are confirmed infected, including two interstate.",
+        "CCEPP has been convened.",
+        "Containment is now being applied consistently, but there are gaps in border control protocols between states.",
+        "ICC is managing the response but resource strain is showing.",
+        "Trace linkage is now at 55%.",
+        "Removal and destruction planning is underway but EPA engagement for disposal site approval is delayed.",
+        "Industry awareness is now at 85% with active communication campaigns."
+      ],
+      "question": "Interstate spread has occurred. CCEPP is active. What are the key priorities for cross-border coordination, EPA engagement for disposal, and sustaining industry cooperation?",
+      "criticalElements": [
+        {
+          "id": "ce3C_border",
+          "name": "Cross-border Coordination",
+          "keywords": [
+            "interstate",
+            "cross-border",
+            "border control",
+            "national coordination",
+            "jurisdictional",
+            "state cooperation",
+            "inter-state",
+            "multi-jurisdictional",
+            "state alignment",
+            "national approach",
+            "federal-state"
+          ]
+        },
+        {
+          "id": "ce3C_epa",
+          "name": "EPA Disposal Approval",
+          "keywords": [
+            "EPA",
+            "disposal",
+            "approved site",
+            "waste management",
+            "environmental approval",
+            "disposal site",
+            "licensed disposal",
+            "environmental authority",
+            "waste permit",
+            "site approval",
+            "environment agency"
+          ]
+        },
+        {
+          "id": "ce3C_icc_resource",
+          "name": "ICC Resourcing",
+          "keywords": [
+            "ICC",
+            "resources",
+            "staffing",
+            "personnel",
+            "workforce",
+            "additional staff",
+            "surge capacity",
+            "volunteer",
+            "ADF",
+            "support staff",
+            "resourcing",
+            "team capacity",
+            "operations centre"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase4_main",
+        "missed_border": "phase4_spread",
+        "missed_epa": "phase4_spread"
+      }
+    },
+    "phase3_success": {
+      "id": "phase3_success",
+      "phaseNumber": 3,
+      "title": "Phase 3 \u2013 Advanced Response Planning",
+      "narrative": [
+        "Your strong early response has kept the outbreak well-contained. Only 3 properties are confirmed infected, all within the original state.",
+        "CCEPP is fully active and providing national coordination.",
+        "Surveillance is comprehensive with 90% of high-risk properties inspected.",
+        "Containment is effective and consistent across all affected areas.",
+        "EPA has approved a disposal site and removal/destruction planning is at an advanced stage.",
+        "Industry engagement is excellent with 95% grower awareness and cooperation.",
+        "Compensation framework under EADRA is being activated.",
+        "International trading partners have been notified through DAFF."
+      ],
+      "question": "Excellent response. The outbreak is well-contained. Now the team must plan the active eradication phase. What are the key activities for removal and destruction, trade notifications, and maintaining stakeholder confidence?",
+      "criticalElements": [
+        {
+          "id": "ce3s_removal_ops",
+          "name": "Removal and Destruction Operations",
+          "keywords": [
+            "removal",
+            "destruction",
+            "operations",
+            "eradication program",
+            "infected material",
+            "host plant removal",
+            "fumigation",
+            "waste disposal",
+            "decontamination",
+            "field operations",
+            "contractor",
+            "destruction permit"
+          ]
+        },
+        {
+          "id": "ce3s_trade",
+          "name": "International Trade Notifications",
+          "keywords": [
+            "trade",
+            "international",
+            "export",
+            "trading partners",
+            "WTO",
+            "SPS",
+            "notification",
+            "IPPC",
+            "phytosanitary",
+            "trade restrictions",
+            "import ban",
+            "market access",
+            "bilateral",
+            "OIE",
+            "DAFF international"
+          ]
+        },
+        {
+          "id": "ce3s_comms",
+          "name": "Stakeholder Communications",
+          "keywords": [
+            "stakeholder",
+            "communication",
+            "media",
+            "public update",
+            "grower briefing",
+            "press release",
+            "transparency",
+            "industry newsletter",
+            "hotline",
+            "public statement",
+            "FAQ",
+            "community meeting"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase4_main",
+        "missed_removal_ops": "phase4_spread",
+        "missed_trade": "phase4_main"
+      }
+    },
+    "phase4_main": {
+      "id": "phase4_main",
+      "phaseNumber": 4,
+      "title": "Phase 4 \u2013 Active Eradication Operations",
+      "narrative": [
+        "The PLANTPLAN response is now in full operational mode. Removal and destruction activities are underway.",
+        "Confirmed infected properties: varies by path (6-9 properties).",
+        "CCEPP is meeting regularly. National Incident Controller appointed.",
+        "A National Response Plan has been developed and is being implemented.",
+        "Removal and destruction is underway on 4 properties. EPA-approved disposal sites are operational.",
+        "Industry compensation payments have commenced under EADRA cost-sharing arrangements.",
+        "Decontamination protocols are being applied at all affected sites.",
+        "International trading partners have been formally notified. Some export restrictions are in place.",
+        "Media attention is significant. A public communications strategy is operational.",
+        "A review of border biosecurity measures is underway."
+      ],
+      "question": "The eradication program is underway. What are the key priorities for maintaining eradication momentum, managing trade impacts, sustaining industry cooperation, and planning for exit from emergency response?",
+      "criticalElements": [
+        {
+          "id": "ce4_eradication",
+          "name": "Eradication Operations",
+          "keywords": [
+            "eradication",
+            "removal",
+            "destruction",
+            "fumigation",
+            "decontamination",
+            "infected site",
+            "host plant",
+            "disposal",
+            "contractor",
+            "field operations",
+            "treatment",
+            "elimination"
+          ]
+        },
+        {
+          "id": "ce4_trade",
+          "name": "Trade Impact Management",
+          "keywords": [
+            "trade",
+            "export",
+            "trading partners",
+            "market access",
+            "import restrictions",
+            "phytosanitary",
+            "WTO",
+            "SPS",
+            "bilateral negotiation",
+            "trade recovery",
+            "certification",
+            "free trade",
+            "market closure"
+          ]
+        },
+        {
+          "id": "ce4_compensation",
+          "name": "Compensation and Cost-Sharing",
+          "keywords": [
+            "compensation",
+            "EADRA",
+            "cost-sharing",
+            "payment",
+            "grower reimbursement",
+            "industry levy",
+            "Commonwealth contribution",
+            "state contribution",
+            "financial support",
+            "payment schedule",
+            "claim processing"
+          ]
+        },
+        {
+          "id": "ce4_exit",
+          "name": "Exit Planning",
+          "keywords": [
+            "exit",
+            "deactivate",
+            "wind down",
+            "transition",
+            "end of response",
+            "recovery phase",
+            "return to normal",
+            "post-response",
+            "ongoing surveillance",
+            "verification",
+            "clearance",
+            "free status",
+            "proof of freedom"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase5_main",
+        "missed_eradication": "phase5_delayed",
+        "missed_trade": "phase5_main",
+        "missed_exit": "phase5_delayed"
+      }
+    },
+    "phase4_spread": {
+      "id": "phase4_spread",
+      "phaseNumber": 4,
+      "title": "Phase 4 \u2013 Large-Scale Outbreak Management",
+      "narrative": [
+        "The delayed and inconsistent response has allowed the pest to establish in multiple states. Eradication is now significantly more complex.",
+        "Confirmed infected properties: 20+ spread across 3 states.",
+        "CCEPP is managing a much larger and more complex response.",
+        "Removal and destruction operations are underway but strained by the scale of the outbreak.",
+        "Industry is under significant financial stress. Compensation claims are overwhelming the system.",
+        "Some international trading partners have suspended imports. Diplomatic channels are engaged.",
+        "Media coverage is intense and critical. A dedicated communications unit has been established.",
+        "Government has announced an independent review of the early response.",
+        "Resource fatigue is becoming a concern for response teams."
+      ],
+      "question": "The outbreak has expanded significantly due to earlier response failures. With 20+ properties infected across 3 states, what are the critical priorities for scaling up eradication, managing the political fallout, and sustaining your workforce?",
+      "criticalElements": [
+        {
+          "id": "ce4sp_scale",
+          "name": "Scaled Eradication Operations",
+          "keywords": [
+            "scale up",
+            "additional resources",
+            "surge",
+            "contractor",
+            "national workforce",
+            "ADF",
+            "mutual aid",
+            "resource sharing",
+            "mass eradication",
+            "bulk removal",
+            "prioritisation",
+            "triage",
+            "most affected properties"
+          ]
+        },
+        {
+          "id": "ce4sp_political",
+          "name": "Political and Media Management",
+          "keywords": [
+            "minister",
+            "media",
+            "press conference",
+            "political",
+            "parliamentary",
+            "public inquiry",
+            "independent review",
+            "accountability",
+            "transparency",
+            "public confidence",
+            "community engagement",
+            "communication strategy"
+          ]
+        },
+        {
+          "id": "ce4sp_welfare",
+          "name": "Workforce Welfare",
+          "keywords": [
+            "workforce",
+            "welfare",
+            "fatigue",
+            "mental health",
+            "employee wellbeing",
+            "work-life balance",
+            "rotation",
+            "relief staff",
+            "support services",
+            "EAP",
+            "occupational health",
+            "staff support"
+          ]
+        },
+        {
+          "id": "ce4sp_compensation",
+          "name": "Compensation and Industry Support",
+          "keywords": [
+            "compensation",
+            "industry support",
+            "financial assistance",
+            "EADRA",
+            "emergency payment",
+            "grower support",
+            "business continuity",
+            "economic impact",
+            "recovery payment",
+            "financial relief"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase5_delayed",
+        "missed_scale": "phase5_failed",
+        "missed_political": "phase5_delayed"
+      }
+    },
+    "phase4_delayed": {
+      "id": "phase4_delayed",
+      "phaseNumber": 4,
+      "title": "Phase 4 \u2013 Delayed Eradication Response",
+      "narrative": [
+        "The response is progressing but key activities have been delayed, creating compounding challenges.",
+        "Confirmed infected properties: 12 across 2 states.",
+        "Eradication operations are underway but several infected sites still await contractor engagement.",
+        "EPA disposal approvals are pending for 2 sites, creating operational delays.",
+        "Industry compensation processing is slow, causing financial hardship and growing frustration.",
+        "International trading partners are under a precautionary import suspension. DAFF is in active negotiations.",
+        "ICC is showing signs of coordination fatigue."
+      ],
+      "question": "Key response activities are behind schedule. Pending EPA approvals and contractor delays are stalling eradication. How does your team unblock these bottlenecks, manage industry hardship, and keep trading partner negotiations on track?",
+      "criticalElements": [
+        {
+          "id": "ce4d_epa",
+          "name": "Unblocking EPA Approvals",
+          "keywords": [
+            "EPA",
+            "approval",
+            "expedite",
+            "urgent approval",
+            "disposal site",
+            "environmental authority",
+            "fast track",
+            "ministerial intervention",
+            "bypass",
+            "alternative site",
+            "temporary approval"
+          ]
+        },
+        {
+          "id": "ce4d_contractors",
+          "name": "Contractor Engagement",
+          "keywords": [
+            "contractor",
+            "tender",
+            "engage",
+            "contract",
+            "additional contractors",
+            "procurement",
+            "qualified operator",
+            "service provider",
+            "mobilise",
+            "deploy",
+            "field teams"
+          ]
+        },
+        {
+          "id": "ce4d_compensation",
+          "name": "Compensation Acceleration",
+          "keywords": [
+            "compensation",
+            "accelerate",
+            "fast track",
+            "urgent payment",
+            "hardship",
+            "financial distress",
+            "emergency support",
+            "interim payment",
+            "advance payment",
+            "EADRA",
+            "cost-sharing"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase5_main",
+        "missed_epa": "phase5_delayed",
+        "missed_contractors": "phase5_delayed"
+      }
+    },
+    "phase5_main": {
+      "id": "phase5_main",
+      "phaseNumber": 5,
+      "title": "Phase 5 \u2013 Verification and Recovery",
+      "narrative": [
+        "Eradication operations are well advanced. The operational response is moving towards the verification phase.",
+        "All identified infected properties have had removal and destruction completed.",
+        "Decontamination is complete or underway at all sites.",
+        "Surveillance is now focused on demonstrating absence \u2014 proof of freedom program is being designed.",
+        "Some international trading partners are considering lifting restrictions, pending verification outcomes.",
+        "Industry is in recovery mode. Compensation payments are progressing.",
+        "A post-response review team has been established.",
+        "ICC is being progressively stood down as the response transitions to long-term surveillance."
+      ],
+      "question": "The active eradication phase is nearly complete. What are the key elements of a robust proof-of-freedom surveillance program, and how does your team manage the transition from emergency response to recovery?",
+      "criticalElements": [
+        {
+          "id": "ce5_proof_freedom",
+          "name": "Proof of Freedom Surveillance",
+          "keywords": [
+            "proof of freedom",
+            "freedom from",
+            "verification",
+            "surveillance program",
+            "absence",
+            "post-eradication",
+            "monitoring protocol",
+            "detect re-emergence",
+            "clear area",
+            "declared free",
+            "freedom status",
+            "clearance survey"
+          ]
+        },
+        {
+          "id": "ce5_trade_recovery",
+          "name": "Trade Recovery",
+          "keywords": [
+            "trade recovery",
+            "market access",
+            "export resumption",
+            "lift restrictions",
+            "phytosanitary certificate",
+            "trading partners",
+            "bilateral",
+            "WTO SPS",
+            "trade negotiation",
+            "import ban lift",
+            "market re-entry",
+            "certification"
+          ]
+        },
+        {
+          "id": "ce5_transition",
+          "name": "Response Transition",
+          "keywords": [
+            "transition",
+            "stand down",
+            "demobilise",
+            "ICC closure",
+            "deactivate",
+            "handover",
+            "recovery phase",
+            "long-term surveillance",
+            "business as usual",
+            "return to normal",
+            "close out",
+            "wind down",
+            "final report"
+          ]
+        },
+        {
+          "id": "ce5_review",
+          "name": "Post-Response Review",
+          "keywords": [
+            "review",
+            "after action",
+            "lessons learned",
+            "post-incident",
+            "evaluation",
+            "improvement",
+            "recommendations",
+            "report",
+            "analysis",
+            "debrief",
+            "improvement plan",
+            "audit"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase6_final",
+        "missed_proof_freedom": "phase6_final",
+        "missed_review": "phase6_final"
+      }
+    },
+    "phase5_delayed": {
+      "id": "phase5_delayed",
+      "phaseNumber": 5,
+      "title": "Phase 5 \u2013 Extended and Strained Response",
+      "narrative": [
+        "The response has been prolonged due to earlier delays. Eradication operations are still ongoing at several sites.",
+        "The ICC continues to operate at full capacity, with signs of team fatigue.",
+        "The extended response has strained industry relationships, with some growers questioning the recovery timeline.",
+        "International trading restrictions remain largely in place pending completion of eradication.",
+        "The cost of the response is significantly higher than projected, attracting parliamentary scrutiny.",
+        "Some properties under surveillance are showing suspect symptoms, requiring reinvestigation.",
+        "A formal review of the response has been announced by the Minister."
+      ],
+      "question": "The response is taking longer than expected and fatigue is setting in. How does your team manage team welfare, address suspect re-infections, manage the parliamentary review, and develop a credible timeline for completing eradication?",
+      "criticalElements": [
+        {
+          "id": "ce5d_reinspection",
+          "name": "Re-inspection of Suspect Sites",
+          "keywords": [
+            "reinspection",
+            "re-inspect",
+            "suspect",
+            "new detection",
+            "recheck",
+            "follow-up inspection",
+            "re-emergence",
+            "alert",
+            "new symptom",
+            "investigate",
+            "urgent inspection",
+            "confirm",
+            "test"
+          ]
+        },
+        {
+          "id": "ce5d_welfare",
+          "name": "Team Welfare and Fatigue Management",
+          "keywords": [
+            "fatigue",
+            "welfare",
+            "team health",
+            "mental health",
+            "rest",
+            "rotation",
+            "relief staff",
+            "wellbeing",
+            "support",
+            "occupational health",
+            "EAP",
+            "rest period",
+            "staff replacement"
+          ]
+        },
+        {
+          "id": "ce5d_review",
+          "name": "Parliamentary/Ministerial Review",
+          "keywords": [
+            "review",
+            "parliamentary",
+            "ministerial",
+            "inquiry",
+            "scrutiny",
+            "accountability",
+            "transparent",
+            "response timeline",
+            "cost overrun",
+            "independent review",
+            "lessons learned",
+            "report to minister"
+          ]
+        },
+        {
+          "id": "ce5d_completion",
+          "name": "Eradication Completion Plan",
+          "keywords": [
+            "completion",
+            "timeline",
+            "final operations",
+            "remaining sites",
+            "conclude",
+            "end date",
+            "finish",
+            "wrap up",
+            "final eradication",
+            "outstanding properties",
+            "close out operations"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase6_final",
+        "missed_reinspection": "phase6_final",
+        "missed_completion": "phase6_final"
+      }
+    },
+    "phase5_failed": {
+      "id": "phase5_failed",
+      "phaseNumber": 5,
+      "title": "Phase 5 \u2013 Crisis Management",
+      "narrative": [
+        "The large-scale outbreak has proven extremely difficult to eradicate. Despite major resource investment, new detections continue to emerge.",
+        "30+ properties have been affected across 4 states.",
+        "There is a risk that the pest may have established in the environment beyond the capacity for full eradication.",
+        "The response has cost hundreds of millions of dollars.",
+        "International trading restrictions are extensive and will take years to recover.",
+        "A Parliamentary Committee has launched a formal inquiry.",
+        "The industry is severely damaged. Many growers have exited the industry.",
+        "The Minister has made a public statement about the government's commitment to recovery."
+      ],
+      "question": "The outbreak has reached crisis proportions. The response is under parliamentary inquiry. How does your team manage the shift from eradication to long-term management, support an industry in crisis, and rebuild public trust?",
+      "criticalElements": [
+        {
+          "id": "ce5f_strategy",
+          "name": "Strategy Shift to Management",
+          "keywords": [
+            "management",
+            "long-term management",
+            "endemic",
+            "containment zone",
+            "management plan",
+            "co-existence",
+            "tolerance",
+            "ongoing surveillance",
+            "strategy review",
+            "eradication infeasible",
+            "management program"
+          ]
+        },
+        {
+          "id": "ce5f_industry_recovery",
+          "name": "Industry Recovery Package",
+          "keywords": [
+            "recovery",
+            "industry support",
+            "recovery package",
+            "financial assistance",
+            "grants",
+            "loans",
+            "re-establishment",
+            "replanting",
+            "business recovery",
+            "support package",
+            "industry resilience",
+            "economic recovery"
+          ]
+        },
+        {
+          "id": "ce5f_trust",
+          "name": "Rebuilding Public Trust",
+          "keywords": [
+            "trust",
+            "transparency",
+            "accountability",
+            "public statement",
+            "media strategy",
+            "apology",
+            "commitment",
+            "rebuild confidence",
+            "communication plan",
+            "engage community",
+            "public relations",
+            "honest assessment"
+          ]
+        }
+      ],
+      "branches": {
+        "success": "phase6_final",
+        "missed_strategy": "phase6_final"
+      }
+    },
+    "phase6_final": {
+      "id": "phase6_final",
+      "phaseNumber": 6,
+      "title": "Phase 6 \u2013 Review, Recovery and Lessons Learned",
+      "narrative": [
+        "The PLANTPLAN response is entering its final phase. The key questions now are: what has been achieved, what was learned, and how do we prevent this from happening again?",
+        "Eradication has been declared (or a management strategy adopted for serious-outcome scenarios).",
+        "A comprehensive after-action review is underway.",
+        "International trading relationships are being restored.",
+        "Industry recovery support is continuing.",
+        "Long-term surveillance protocols have been established.",
+        "A national lessons-learned report is being prepared for publication.",
+        "Border biosecurity recommendations have been submitted to government."
+      ],
+      "question": "As the PLANTPLAN response concludes, your team must deliver a comprehensive after-action review. What are the most critical lessons learned, what systemic improvements would you recommend, and how will you ensure the industry and biosecurity system is more resilient for the future?",
+      "criticalElements": [
+        {
+          "id": "ce6_lessons",
+          "name": "Key Lessons Learned",
+          "keywords": [
+            "lessons learned",
+            "improvement",
+            "recommendations",
+            "after action",
+            "debrief",
+            "what worked",
+            "what failed",
+            "improvement plan",
+            "better response",
+            "systemic change",
+            "reform",
+            "strengthening"
+          ]
+        },
+        {
+          "id": "ce6_prevention",
+          "name": "Prevention and Early Detection",
+          "keywords": [
+            "prevention",
+            "early detection",
+            "biosecurity investment",
+            "surveillance network",
+            "risk assessment",
+            "import controls",
+            "border security",
+            "pre-border",
+            "offshore surveillance",
+            "risk reduction",
+            "preparedness"
+          ]
+        },
+        {
+          "id": "ce6_trade_restore",
+          "name": "Trade Relationship Restoration",
+          "keywords": [
+            "trade restoration",
+            "market access",
+            "phytosanitary",
+            "proof of freedom",
+            "export resumption",
+            "bilateral agreement",
+            "trading partners",
+            "market re-entry",
+            "certification",
+            "WTO SPS notification"
+          ]
+        },
+        {
+          "id": "ce6_plan_update",
+          "name": "Plan and Protocol Updates",
+          "keywords": [
+            "plan update",
+            "PLANTPLAN revision",
+            "protocol update",
+            "SOP",
+            "standard operating procedure",
+            "guideline update",
+            "policy reform",
+            "legislation",
+            "regulation",
+            "manual update",
+            "training program",
+            "exercise program"
+          ]
+        }
+      ],
+      "branches": {}
+    }
+  },
+  "id": "plantplan"
+}

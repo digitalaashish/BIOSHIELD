@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIOShield Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310b981'/><path d='M16 6L22 10V18C22 22 16 26 16 26S10 22 10 18V10L16 6Z' fill='white'/></svg>">
+</head>
+<body>
+
+<div id="toast-container" role="status" aria-live="polite"></div>
+
+<!-- Auth gate -->
+<div id="auth-gate" style="display:none; min-height:100vh; flex-direction:column; align-items:center; justify-content:center; padding:2rem;">
+  <div style="max-width:380px; width:100%; text-align:center;">
+    <div style="margin-bottom:1.5rem;">
+      <div class="logo-icon" style="margin:0 auto 1rem; width:48px; height:48px; border-radius:12px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7V13C20 17.418 16.418 21 12 21C7.582 21 4 17.418 4 13V7L12 3Z" fill="white"/></svg>
+      </div>
+      <h2>Admin Access Required</h2>
+      <p style="margin-top:0.375rem;">Please log in to access the admin panel</p>
+    </div>
+    <a href="index.html" class="btn btn-primary" style="display:block;">Go to Login →</a>
+  </div>
+</div>
+
+<!-- Admin App -->
+<div id="admin-app" style="display:none; min-height:100vh;">
+
+  <!-- Topbar -->
+  <nav class="topbar">
+    <a href="index.html" class="logo">
+      <img id="admin-logo-img" src="" alt="Logo" style="display:none;max-height:34px;max-width:110px;object-fit:contain;">
+      <div class="logo-icon" id="admin-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3L20 7V13C20 17.418 16.418 21 12 21C7.582 21 4 17.418 4 13V7L12 3Z" fill="white"/>
+          <path d="M9 12l2 2 4-4" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-name" id="admin-logo-text">BIO<span>Shield</span> <span style="font-size:0.75rem; opacity:0.6; font-weight:400;">Admin</span></span>
+    </a>
+    <div class="topbar-right">
+      <span id="admin-user-badge" class="badge badge-green"></span>
+      <button class="btn btn-ghost btn-sm" id="header-dark-toggle" onclick="toggleDarkMode()" title="Toggle dark/light mode" style="font-size:1rem;padding:0.35rem 0.5rem;">🌙</button>
+      <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- Nav tabs -->
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchAdminTab('rooms')" id="tab-rooms">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Rooms
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('scenarios')" id="tab-scenarios">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Scenarios
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('builder')" id="tab-builder">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/><path d="M3 15h6"/><path d="M13 7h5"/><path d="M13 12h5"/><path d="M13 17h5"/></svg>
+      Builder
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('analytics')" id="tab-analytics">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Analytics
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('records')" id="tab-records">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Results
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('apistatus')" id="tab-apistatus">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+      API Status
+    </button>
+    <button class="admin-tab" onclick="switchAdminTab('settings')" id="tab-settings">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      Settings
+    </button>
+  </div>
+
+  <!-- Tab panels -->
+  <div class="admin-content">
+
+    <!-- ═══ ROOMS TAB ═══ -->
+    <div class="admin-panel active" id="panel-rooms">
+      <div class="admin-panel-header">
+        <div>
+          <h2>Exercise Rooms</h2>
+          <p class="text-muted text-sm">Create rooms and assign a scenario to each. Multiple rooms with different scenarios can run simultaneously.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openCreateRoomModal()" id="btn-create-room">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Room
+        </button>
+      </div>
+
+      <!-- New room result banner -->
+      <div id="new-room-banner" style="display:none;" class="new-room-banner">
+        <div class="new-room-banner-inner">
+          <div>
+            <div class="text-xs text-dim fw-700" style="text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.25rem;">New Room Created</div>
+            <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+              <div>
+                <span class="text-xs text-dim">Room Code</span>
+                <div class="font-mono text-green fw-700" id="new-room-code" style="font-size:1.5rem; letter-spacing:0.15em;"></div>
+              </div>
+              <div>
+                <span class="text-xs text-dim">Password</span>
+                <div class="font-mono fw-700" id="new-room-pw" style="font-size:1.5rem; letter-spacing:0.1em;"></div>
+              </div>
+              <div>
+                <span class="text-xs text-dim">Scenario</span>
+                <div class="fw-700 text-green" id="new-room-scenario" style="font-size:1rem; margin-top:0.2rem;"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="document.getElementById('new-room-banner').style.display='none'">Dismiss</button>
+        </div>
+      </div>
+
+      <div id="rooms-loading" class="empty-state">Loading rooms...</div>
+      <div id="rooms-list" style="display:none;">
+        <div class="rooms-grid" id="rooms-grid"></div>
+      </div>
+      <div id="rooms-empty" class="empty-state" style="display:none;">
+        No rooms yet. Create a room to get started.
+      </div>
+    </div>
+
+    <!-- ═══ SCENARIOS TAB ═══ -->
+    <div class="admin-panel" id="panel-scenarios">
+      <div class="admin-panel-header">
+        <div>
+          <h2>Scenarios</h2>
+          <p class="text-muted text-sm">Upload new scenario documents (.docx or plain text). AI will parse the document and build the scenario automatically.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openUploadModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload Scenario
+        </button>
+      </div>
+
+      <div id="scenarios-loading" class="empty-state">Loading scenarios...</div>
+      <div id="scenarios-list" style="display:none;">
+        <div class="scenarios-grid" id="scenarios-grid"></div>
+      </div>
+      <div id="scenarios-empty" class="empty-state" style="display:none;">
+        No scenarios uploaded yet.
+      </div>
+
+      <!-- Upload guide card -->
+      <div class="card" style="margin-top:1.5rem;">
+        <h3 style="margin-bottom:0.75rem; font-size:0.9375rem;">How to prepare your scenario document</h3>
+        <div style="font-size:0.85rem; color:var(--text-dim); line-height:1.8;">
+          <p>Your scenario document can be in any readable text format (.docx, .txt, .md). AI will analyse and structure it automatically. For best results:</p>
+          <ul style="margin:0.75rem 0 0 1.25rem; padding:0; list-style:disc;">
+            <li>Use clear headings like <strong style="color:var(--text);">PHASE 1</strong>, <strong style="color:var(--text);">PHASE 2A</strong>, etc.</li>
+            <li>Label critical factors clearly: <strong style="color:var(--text);">CF1: National reporting</strong></li>
+            <li>Include a scenario narrative for each phase</li>
+            <li>Include branching outcomes (e.g. Reporting delay pathway, Containment delay pathway)</li>
+            <li>The AI will extract keywords and build branching logic automatically</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCENARIO BUILDER TAB ═══ -->
+    <div class="admin-panel" id="panel-builder">
+      <!-- Split layout: left = phase list, right = editor -->
+      <div class="builder-layout">
+
+        <!-- LEFT: Scenario selector + phase list -->
+        <div class="builder-sidebar">
+          <div class="builder-sidebar-header">
+            <h3>Scenario Builder</h3>
+            <div class="builder-header-actions">
+              <button class="btn btn-primary btn-sm" onclick="builderNewScenario()" title="Create blank scenario">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                New
+              </button>
+            </div>
+          </div>
+
+          <!-- Scenario picker -->
+          <div class="builder-scenario-picker">
+            <label class="form-label">Active Scenario</label>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <select id="builder-scenario-select" class="form-input" onchange="builderLoadScenario(this.value)" style="flex:1;">
+                <option value="">— select a scenario —</option>
+              </select>
+            </div>
+            <!-- AI Generate button - full width, easy to click -->
+            <button onclick="openAiGenModal()" style="margin-top:0.625rem; width:100%; display:flex; align-items:center; justify-content:center; gap:6px; padding:0.5rem 0.75rem; background:linear-gradient(135deg,#064e3b,#065f46); color:#fff; border:1px solid #10b981; border-radius:6px; font-size:0.8125rem; font-weight:600; cursor:pointer; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              &#10024; Generate with AI
+            </button>
+          </div>
+
+          <!-- Scenario meta (shown when loaded) -->
+          <div id="builder-meta-block" style="display:none; padding:0 0 0.75rem;">
+            <div class="builder-meta-row">
+              <span class="builder-meta-label">ID</span>
+              <span class="builder-meta-val font-mono" id="builder-meta-id"></span>
+            </div>
+            <div class="builder-meta-row">
+              <span class="builder-meta-label">Framework</span>
+              <span class="builder-meta-val" id="builder-meta-fw"></span>
+            </div>
+            <div class="builder-meta-row">
+              <span class="builder-meta-label">Phases</span>
+              <span class="builder-meta-val" id="builder-meta-phases"></span>
+            </div>
+            <button class="btn btn-ghost btn-sm" style="margin-top:0.5rem; width:100%;" onclick="builderEditScenarioInfo()">
+              Edit Scenario Info
+            </button>
+          </div>
+
+          <!-- Phase list -->
+          <div id="builder-phase-list-wrap" style="display:none;">
+            <div class="builder-phase-list-header">
+              <span>Phases</span>
+              <button class="btn btn-ghost btn-sm" onclick="builderAddPhase()">+ Add Phase</button>
+            </div>
+            <div id="builder-phase-list"></div>
+          </div>
+
+          <!-- Save bar -->
+          <div id="builder-save-bar" style="display:none;" class="builder-save-bar">
+            <button class="btn btn-secondary btn-sm" onclick="builderSave()" id="builder-save-btn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save
+            </button>
+            <span id="builder-save-status" class="text-xs text-dim"></span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Editor pane -->
+        <div class="builder-editor" id="builder-editor-pane">
+          <div class="builder-editor-empty" id="builder-editor-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M13 7h5"/><path d="M13 12h5"/><path d="M13 17h5"/></svg>
+            <p style="opacity:0.5; margin-top:1rem;">Select a scenario and click a phase to edit it,<br>or create a new scenario to get started.</p>
+          </div>
+
+          <!-- Scenario Info Editor -->
+          <div id="builder-info-editor" style="display:none;" class="builder-editor-section">
+            <div class="builder-editor-header">
+              <h3>Scenario Info</h3>
+              <button class="btn btn-ghost btn-sm" onclick="builderCloseEditor()">✕</button>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Title <span class="req">*</span></label>
+              <input type="text" id="be-title" class="form-input" placeholder="e.g. Xylella fastidiosa — Exotic Incursion">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Framework</label>
+              <select id="be-framework" class="form-input">
+                <option value="PLANTPLAN">PLANTPLAN</option>
+                <option value="AUSVETPLAN">AUSVETPLAN</option>
+                <option value="AUSFOODPLAN">AUSFOODPLAN</option>
+                <option value="AQUAVETPLAN">AQUAVETPLAN</option>
+                <option value="NATA">NATA</option>
+                <option value="Custom">Custom</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea id="be-description" class="form-input" rows="3" placeholder="Brief overview for participants"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Version</label>
+              <input type="text" id="be-version" class="form-input" placeholder="1.0" style="max-width:120px;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">References</label>
+              <textarea id="be-references" class="form-input" rows="4" placeholder="One reference per line, e.g.&#10;DAFF (2023). PLANTPLAN Response Policy. https://...&#10;Smith, J. (2022). Biosecurity Act 2015 Overview."></textarea>
+              <span class="form-hint">One reference per line — shown in PDF reports for this scenario.</span>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" onclick="builderSaveInfoBlock()">Apply Changes</button>
+              <button class="btn btn-ghost" onclick="builderCloseEditor()">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Phase Editor -->
+          <div id="builder-phase-editor" style="display:none;" class="builder-editor-section">
+            <div class="builder-editor-header">
+              <h3 id="be-phase-heading">Edit Phase</h3>
+              <div style="display:flex; gap:0.5rem;">
+                <button class="btn btn-danger-ghost btn-sm" onclick="builderDeletePhase()" title="Delete this phase">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                  Delete
+                </button>
+                <button class="btn btn-ghost btn-sm" onclick="builderCloseEditor()">✕</button>
+              </div>
+            </div>
+
+            <input type="hidden" id="be-phase-id-original">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label">Phase ID <span class="req">*</span></label>
+                <input type="text" id="be-phase-id" class="form-input font-mono" placeholder="e.g. phase1, phase2a">
+                <span class="form-hint">Unique ID — used in branch targets</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phase Number</label>
+                <input type="number" id="be-phase-number" class="form-input" placeholder="1" min="1">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phase Title</label>
+              <input type="text" id="be-phase-title" class="form-input" placeholder="e.g. Phase 1 — Initial Detection">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Narrative</label>
+              <span class="form-hint" style="margin-bottom:0.4rem; display:block;">One paragraph per line. Each becomes a separate narrative block.</span>
+              <textarea id="be-phase-narrative" class="form-input" rows="5" placeholder="Enter narrative paragraphs, one per line..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Question <span class="req">*</span></label>
+              <textarea id="be-phase-question" class="form-input" rows="2" placeholder="e.g. What are the team's immediate actions?"></textarea>
+            </div>
+
+            <!-- Critical Elements -->
+            <div class="form-group">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <label class="form-label" style="margin:0;">Critical Elements</label>
+                <button class="btn btn-ghost btn-sm" onclick="builderAddElement()">+ Add Element</button>
+              </div>
+              <span class="form-hint" style="margin-bottom:0.75rem; display:block;">Each element is a concept the team must address. Keywords are used for AI matching.</span>
+              <div id="be-elements-list"></div>
+            </div>
+
+            <!-- Branches -->
+            <div class="form-group">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <label class="form-label" style="margin:0;">Branch Outcomes</label>
+                <button class="btn btn-ghost btn-sm" onclick="builderAddBranch()">+ Add Branch</button>
+              </div>
+              <span class="form-hint" style="margin-bottom:0.75rem; display:block;">Define where the scenario goes next depending on team performance. Always include a <code>success</code> branch.</span>
+              <div id="be-branches-list"></div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" onclick="builderSavePhase()">Apply Changes</button>
+              <button class="btn btn-ghost" onclick="builderCloseEditor()">Cancel</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ANALYTICS TAB ═══ -->
+    <div class="admin-panel" id="panel-analytics">
+      <div class="admin-panel-header">
+        <div>
+          <h2>Analytics</h2>
+          <p class="text-muted text-sm">Overview of all exercise activity.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="loadAnalytics()">Refresh</button>
+      </div>
+
+      <div class="stats-grid" id="analytics-stats">
+        <div class="stat-card"><div class="stat-value" id="stat-total-rooms">—</div><div class="stat-label">Total Rooms</div></div>
+        <div class="stat-card"><div class="stat-value text-green" id="stat-active-rooms">—</div><div class="stat-label">Active Rooms</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-completed">—</div><div class="stat-label">Completed</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-participants">—</div><div class="stat-label">Total Participants</div></div>
+      </div>
+
+      <div class="stats-grid" style="margin-top:0.75rem;">
+        <div class="stat-card"><div class="stat-value" id="stat-avg-time">—</div><div class="stat-label">Avg Exercise Time</div></div>
+        <div class="stat-card"><div class="stat-value" id="stat-avg-phase">—</div><div class="stat-label">Avg Time / Phase</div></div>
+        <div class="stat-card"><div class="stat-value text-green" style="font-size:0.95rem;" id="stat-fastest">—</div><div class="stat-label">Fastest Room</div></div>
+        <div class="stat-card"><div class="stat-value" style="font-size:0.95rem;" id="stat-slowest">—</div><div class="stat-label">Slowest Room</div></div>
+      </div>
+
+      <div class="card" style="margin-top:1.25rem; display:none;" id="score-chart-card">
+        <h3 style="margin-bottom:1rem;">Score Trend (last 12 exercises)</h3>
+        <div style="height:220px; position:relative;"><canvas id="score-chart"></canvas></div>
+      </div>
+
+      <div class="card" style="margin-top:1.25rem;">
+        <h3 style="margin-bottom:1rem;">Recent Quiz Records</h3>
+        <div id="analytics-records"><div class="empty-state">No records yet.</div></div>
+      </div>
+    </div>
+
+    <!-- ═══ RESULTS TAB ═══ -->
+    <div class="admin-panel" id="panel-records">
+      <div class="admin-panel-header">
+        <div>
+          <h2>Exercise Results</h2>
+          <p class="text-muted text-sm">View and download feedback results for every completed exercise.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="loadQuizRecords()">Refresh</button>
+          <button class="btn btn-secondary btn-sm" onclick="exportRecordsCSV()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:5px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export All CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Search + Sort bar -->
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.25rem; align-items:center;">
+        <div style="position:relative; flex:1; min-width:200px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-dim);pointer-events:none;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="records-search" type="text" placeholder="Search by room, scenario or participant..." class="form-input" style="padding-left:2rem; height:40px; font-size:0.8125rem;" oninput="filterAndSortRecords()">
+        </div>
+        <select id="records-sort" class="form-input" style="flex-shrink:0; height:40px; font-size:0.8125rem; box-sizing:border-box; padding-right:1.5rem;" onchange="filterAndSortRecords()">
+          <option value="completed-desc">Newest first</option>
+          <option value="completed-asc">Oldest first</option>
+          <option value="score-desc">Highest score</option>
+          <option value="score-asc">Lowest score</option>
+          <option value="time-asc">Fastest time</option>
+          <option value="time-desc">Slowest time</option>
+        </select>
+      </div>
+
+      <div id="records-container">
+        <div class="empty-state">Loading records...</div>
+      </div>
+    </div>
+
+    <!-- ═══ API STATUS TAB ═══ -->
+    <div class="admin-panel" id="panel-apistatus">
+      <div class="admin-panel-header">
+        <div>
+          <h2>API Status</h2>
+          <p class="text-muted text-sm">Usage tracking and service status for all tools BIOShield uses.</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="loadApiStatus()">Refresh</button>
+      </div>
+      <div id="api-status-content">
+        <div class="empty-state">Loading API status...</div>
+      </div>
+    </div>
+
+    <!-- ═══ SETTINGS TAB ═══ -->
+    <div class="admin-panel" id="panel-settings">
+      <div class="admin-panel-header">
+        <div>
+          <h2>Settings</h2>
+          <p class="text-muted text-sm">Manage branding, API keys, appearance, and credentials.</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+
+        <!-- ── Branding ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+            Site Branding
+          </h3>
+          <div class="form-group">
+            <label class="form-label">Site Title</label>
+            <input type="text" id="setting-site-title" class="form-input" placeholder="BIOShield">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tagline</label>
+            <input type="text" id="setting-site-tagline" class="form-input" placeholder="Biosecurity Exercise Platform">
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveBranding()">Save Branding</button>
+        </div>
+
+        <!-- ── Logo & Favicon ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Logo &amp; Favicon
+          </h3>
+
+          <div class="settings-asset-row">
+            <div class="settings-asset-preview" id="logo-preview">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div class="form-label" style="margin-bottom:0.25rem;">Logo</div>
+              <div class="settings-asset-hint">Recommended: PNG or SVG · 200×60 px · Max 500 KB<br>Shown in the header and login screen.</div>
+              <label class="btn btn-ghost btn-sm settings-file-btn" style="margin-top:0.5rem;">
+                Upload Logo
+                <input type="file" accept=".png,.jpg,.jpeg,.svg,.webp" style="display:none;" onchange="uploadAsset(this,'logo')">
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-asset-row" style="margin-top:1rem;">
+            <div class="settings-asset-preview settings-asset-preview-sm" id="favicon-preview">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div class="form-label" style="margin-bottom:0.25rem;">Favicon</div>
+              <div class="settings-asset-hint">Recommended: ICO or PNG · 32×32 px · Max 100 KB<br>Shown in browser tab.</div>
+              <label class="btn btn-ghost btn-sm settings-file-btn" style="margin-top:0.5rem;">
+                Upload Favicon
+                <input type="file" accept=".png,.ico,.svg" style="display:none;" onchange="uploadAsset(this,'favicon')">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Appearance ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20"/></svg>
+            Appearance
+          </h3>
+          <div class="form-group">
+            <label class="form-label">Admin Panel Mode</label>
+            <div class="settings-toggle-row">
+              <span id="theme-mode-label">Dark Mode</span>
+              <button class="settings-toggle" id="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark/light mode">
+                <span class="settings-toggle-knob"></span>
+              </button>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:1rem;">
+            <label class="form-label">Player Game Theme</label>
+            <div class="settings-asset-hint" style="margin-bottom:0.75rem;">Colour theme shown to participants during the exercise.</div>
+            <div class="theme-swatches" id="theme-swatches">
+              <button class="theme-swatch active" data-theme="navy" onclick="applyGameTheme('navy')" title="Navy (default)">
+                <span style="background:#0f172a;"></span><span style="background:#10b981;"></span>
+                <span class="theme-swatch-label">Navy</span>
+              </button>
+              <button class="theme-swatch" data-theme="slate" onclick="applyGameTheme('slate')" title="Slate Blue">
+                <span style="background:#1e293b;"></span><span style="background:#6366f1;"></span>
+                <span class="theme-swatch-label">Slate</span>
+              </button>
+              <button class="theme-swatch" data-theme="forest" onclick="applyGameTheme('forest')" title="Forest">
+                <span style="background:#052e16;"></span><span style="background:#22c55e;"></span>
+                <span class="theme-swatch-label">Forest</span>
+              </button>
+              <button class="theme-swatch" data-theme="crimson" onclick="applyGameTheme('crimson')" title="Crimson">
+                <span style="background:#1c0a0a;"></span><span style="background:#ef4444;"></span>
+                <span class="theme-swatch-label">Crimson</span>
+              </button>
+              <button class="theme-swatch" data-theme="ocean" onclick="applyGameTheme('ocean')" title="Ocean">
+                <span style="background:#0c1a2e;"></span><span style="background:#38bdf8;"></span>
+                <span class="theme-swatch-label">Ocean</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Gemini API Key ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            Gemini API Key
+          </h3>
+          <p class="settings-asset-hint" style="margin-bottom:1rem;">Used for AI analysis during exercises and scenario document parsing. Get your key from <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--green);">Google AI Studio</a>.</p>
+          <div class="form-group">
+            <label class="form-label">API Key <span id="gemini-key-status" class="settings-badge settings-badge-ok" style="display:none;">✓ Set</span></label>
+            <div style="display:flex;gap:0.5rem;">
+              <input type="password" id="setting-gemini-key" class="form-input" placeholder="AIza..." autocomplete="off" style="flex:1;">
+              <button class="btn btn-ghost btn-sm" onclick="toggleKeyVisibility()" id="key-visibility-btn" title="Show/hide key">👁</button>
+            </div>
+            <div class="settings-asset-hint" style="margin-top:0.375rem;">Leave blank to keep the current key. Changes take effect immediately — no restart needed.</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveGeminiKey()">Update Key</button>
+        </div>
+
+        <!-- ── AI Model Switcher ── -->
+        <div class="card settings-card" id="model-switcher-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            AI Model
+          </h3>
+          <p class="settings-asset-hint" style="margin-bottom:1rem;">Switch the Gemini model used for exercise AI analysis. Use a higher-quota model (e.g. 2.0 Flash) when the daily limit is reached on 2.5 Flash.</p>
+          <div class="form-group">
+            <label class="form-label">Active Model</label>
+            <select id="setting-gemini-model" class="form-input" onchange="updateModelLimitsDisplay(this.value)">
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash — 10 RPM · 250 RPD · 250K TPM (default)</option>
+              <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash-Lite — 15 RPM · 1,000 RPD · 250K TPM</option>
+              <option value="gemini-2.0-flash">Gemini 2.0 Flash — 15 RPM · 1,500 RPD · 1,000K TPM (highest quota)</option>
+            </select>
+          </div>
+          <div id="model-limits-display" style="font-size:0.8125rem; color:var(--text-dim); margin-bottom:0.75rem; padding:0.5rem 0.75rem; background:var(--bg3); border-radius:6px;"></div>
+          <button class="btn btn-primary btn-sm" onclick="saveGeminiModel()">Apply Model</button>
+        </div>
+
+        <!-- ── Password ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Admin Credentials
+          </h3>
+          <form onsubmit="saveSettings(event)">
+            <div class="form-group">
+              <label class="form-label">New Password</label>
+              <input type="password" id="new-password" class="form-input" placeholder="Minimum 8 characters" minlength="8">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email (optional)</label>
+              <input type="email" id="new-email" class="form-input" placeholder="admin@example.com">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Update Credentials</button>
+          </form>
+        </div>
+
+        <!-- ── About ── -->
+        <div class="card settings-card">
+          <h3 class="settings-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            About
+          </h3>
+          <div style="font-size:0.875rem; color:var(--text-muted); line-height:1.8;">
+            <p><strong style="color:var(--text);">BIOShield v2.11</strong></p>
+            <p>Biosecurity Exercise Simulator</p>
+            <p style="margin-top:0.5rem; font-size:0.8rem;">AI: Gemini (configurable) &nbsp;·&nbsp; Database: MySQL &nbsp;·&nbsp; Video: Jitsi Meet</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ Room Detail Modal ═══ -->
+<div id="room-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeRoomModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-room-title">Room Details</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeRoomModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-room-body"></div>
+  </div>
+</div>
+
+<!-- ═══ Share Room Modal ═══ -->
+<div id="share-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeShareModal()">
+  <div class="modal-box" style="max-width:480px;">
+    <div class="modal-header">
+      <h3>Share Room</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeShareModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.875rem;color:var(--text-dim);margin-bottom:1.25rem;">Send these details to your participants so they can join the exercise.</p>
+      <div style="display:flex;flex-direction:column;gap:0.875rem;margin-bottom:1.5rem;">
+        <div style="background:var(--bg2);border-radius:8px;padding:1rem;">
+          <div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em;">Join URL</div>
+          <div id="share-join-url" style="font-size:0.85rem;color:var(--green);word-break:break-all;"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div style="background:var(--bg2);border-radius:8px;padding:1rem;">
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em;">Room Code</div>
+            <div id="share-room-code" style="font-size:1.25rem;font-weight:700;font-family:monospace;color:var(--green);"></div>
+          </div>
+          <div style="background:var(--bg2);border-radius:8px;padding:1rem;">
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em;">Password</div>
+            <div id="share-room-password" style="font-size:1.25rem;font-weight:700;font-family:monospace;color:var(--text);"></div>
+          </div>
+        </div>
+        <div style="background:var(--bg2);border-radius:8px;padding:1rem;">
+          <div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.05em;">Scenario</div>
+          <div id="share-scenario-name" style="font-size:0.9rem;font-weight:600;color:var(--text);"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.75rem;">
+        <button id="btn-copy-share" class="btn btn-secondary" style="flex:1;" onclick="copyShareMessage()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Message
+        </button>
+        <button class="btn btn-ghost" onclick="closeShareModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Create Room Modal ═══ -->
+<div id="create-room-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeCreateRoomModal()">
+  <div class="modal-box" style="max-width:460px;">
+    <div class="modal-header">
+      <h3>Create New Room</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeCreateRoomModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Select Scenario</label>
+        <select id="create-room-scenario" class="form-input" style="appearance:auto;">
+          <option value="">Loading scenarios...</option>
+        </select>
+        <div style="font-size:0.8rem; color:var(--text-dim); margin-top:0.375rem;">Each room runs its assigned scenario independently.</div>
+      </div>
+      <div style="display:flex; gap:0.75rem; margin-top:1.25rem;">
+        <button class="btn btn-primary" style="flex:1;" onclick="createRoom()" id="btn-confirm-create">
+          Create Room
+        </button>
+        <button class="btn btn-ghost" onclick="closeCreateRoomModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Upload Scenario Modal ═══ -->
+<div id="upload-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeUploadModal()">
+  <div class="modal-box" style="max-width:560px;">
+    <div class="modal-header">
+      <h3>Upload New Scenario</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeUploadModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Scenario Title</label>
+        <input type="text" id="upload-title" class="form-input" placeholder="e.g. Foot and Mouth Disease Response 2026">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Scenario Document</label>
+        <div class="upload-drop-zone" id="upload-drop-zone" onclick="document.getElementById('upload-file-input').click()">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-dim); margin-bottom:0.5rem;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div style="font-size:0.875rem; color:var(--text-dim);">Click to select .docx or .txt file</div>
+          <div id="upload-file-name" style="font-size:0.8rem; color:var(--green); margin-top:0.375rem; display:none;"></div>
+        </div>
+        <input type="file" id="upload-file-input" accept=".docx,.txt,.md" style="display:none;" onchange="handleFileSelect(event)">
+        <div style="font-size:0.8rem; color:var(--text-dim); margin-top:0.375rem;">Supported: .docx (Word), .txt, .md · AI will parse the document structure automatically.</div>
+      </div>
+
+      <div id="upload-progress" style="display:none;">
+        <div style="background:var(--bg3); border-radius:6px; height:4px; margin-bottom:0.75rem; overflow:hidden;">
+          <div id="upload-progress-bar" style="height:100%; background:var(--green); width:0%; transition:width 0.5s;"></div>
+        </div>
+        <div id="upload-status" style="font-size:0.8125rem; color:var(--text-dim); text-align:center;"></div>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; margin-top:1.25rem;">
+        <button class="btn btn-primary" style="flex:1;" onclick="uploadScenario()" id="btn-upload-confirm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Parse & Upload
+        </button>
+        <button class="btn btn-ghost" onclick="closeUploadModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────────
+     AI GENERATE SCENARIO MODAL
+     ──────────────────────────────────────────────────────────── -->
+<div id="ai-gen-modal" class="modal-overlay" style="display:none;" onclick="if(event.target===this)closeAiGenModal()">
+  <div class="modal-box" style="max-width:580px; max-height:90vh; overflow-y:auto;">
+    <div class="modal-header">
+      <h3>✨ Generate Scenario with AI</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeAiGenModal()" style="width:28px; height:28px; padding:0; display:flex; align-items:center; justify-content:center; flex-shrink:0;">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.8125rem; color:var(--text-dim); margin-bottom:1.25rem; line-height:1.6;">
+        Describe the scenario you want and AI will generate all phases, narratives, questions and critical elements automatically.
+        You can edit everything in the Builder afterwards.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Scenario Title <span style="color:#ef4444;">*</span></label>
+        <input id="aigen-title" class="form-input" type="text" placeholder="e.g. Foot-and-Mouth Disease Outbreak — Queensland" maxlength="80">
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+        <div class="form-group">
+          <label class="form-label">Framework</label>
+          <select id="aigen-framework" class="form-input">
+            <option value="PLANTPLAN">PLANTPLAN</option>
+            <option value="AUSVETPLAN">AUSVETPLAN</option>
+            <option value="AQUAVETPLAN">AQUAVETPLAN</option>
+            <option value="MARINE">Marine Biosecurity</option>
+            <option value="CUSTOM">Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Scenario Type</label>
+          <select id="aigen-type" class="form-input">
+            <option value="Exotic Incursion">Exotic Incursion</option>
+            <option value="Established Pest">Established Pest</option>
+            <option value="Biosecurity Compliance">Compliance Exercise</option>
+            <option value="Emergency Response">Emergency Response</option>
+            <option value="Surveillance">Surveillance &amp; Detection</option>
+            <option value="Trade Disruption">Trade Disruption</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+        <div class="form-group">
+          <label class="form-label">Pest / Disease / Threat</label>
+          <input id="aigen-pest" class="form-input" type="text" placeholder="e.g. Xylella fastidiosa, FMD, Varroa mite">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Region / Setting</label>
+          <input id="aigen-region" class="form-input" type="text" placeholder="e.g. Western Australia, NT border, Port of Darwin">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Number of Phases: <strong id="aigen-phase-count-label">6</strong></label>
+        <input id="aigen-phase-count" type="range" min="3" max="12" value="6" style="width:100%; accent-color:var(--green);" oninput="document.getElementById('aigen-phase-count-label').textContent=this.value">
+        <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-dim); margin-top:0.25rem;"><span>3 (short)</span><span>12 (comprehensive)</span></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Background Context <span style="font-size:0.75rem; color:var(--text-dim);">(pre-filled for all your scenarios)</span></label>
+        <textarea id="aigen-context" class="form-input" rows="2" placeholder="e.g. Target audience: state biosecurity officers. Location: rural Australia. Difficulty: intermediate." style="resize:vertical;"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Specific Instructions / Prompt</label>
+        <textarea id="aigen-prompt" class="form-input" rows="3" placeholder="e.g. Start with a port interception, escalate to a possible widespread incursion by phase 4, include a media communication phase." style="resize:vertical;"></textarea>
+      </div>
+
+      <div id="aigen-error" style="display:none; padding:0.625rem 0.875rem; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:6px; font-size:0.8125rem; color:#ef4444; margin-bottom:1rem;"></div>
+
+      <div style="display:flex; gap:0.75rem; justify-content:flex-end; flex-wrap:wrap;">
+        <button class="btn btn-ghost" onclick="closeAiGenModal()">Cancel</button>
+        <button id="aigen-submit-btn" class="btn btn-primary" onclick="submitAiGenScenario()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Generate Scenario
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

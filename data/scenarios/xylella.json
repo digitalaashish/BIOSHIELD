@@ -1,0 +1,1301 @@
+{
+  "id": "xylella",
+  "title": "Xylella fastidiosa — Exotic Incursion (Simulated Event)",
+  "framework": "PLANTPLAN",
+  "version": "1.0",
+  "phases": {
+
+    "phase1": {
+      "id": "phase1",
+      "phaseNumber": 1,
+      "title": "Phase 1 — Initial Detection (Suspect Incident)",
+      "narrative": [
+        "A mixed horticulture enterprise in northern New South Wales reports progressive decline in olives and grapevines over 2–3 weeks.",
+        "Olive trees show leaf scorch, twig dieback, and patchy canopy collapse, while grapevines exhibit uneven vigour loss and marginal necrosis, concentrated near irrigation infrastructure.",
+        "An attending agronomist notes the pattern is not consistent with abiotic stress and suggests possible systemic infection.",
+        "Sticky trap monitoring shows elevated sap-feeding insect activity across multiple blocks.",
+        "Recent operational history includes: interstate nursery olive stock imported within 6 months; shared pruning and harvesting equipment across crop types; contractors moving between multiple horticulture properties with informal hygiene practices.",
+        "Samples are collected and submitted for laboratory testing. A xylem-associated pathogen is suspected but not confirmed."
+      ],
+      "question": "Your team has just received this initial situation report. As the biosecurity response team, what are the immediate actions you need to take?",
+      "criticalElements": [
+        {
+          "id": "cf1_reporting",
+          "name": "National Reporting",
+          "keywords": ["report", "notify", "national", "DAFF", "Commonwealth", "ACCPO", "mandatory", "escalate", "biosecurity alert", "incident report", "regulatory", "notification"]
+        },
+        {
+          "id": "cf2_containment",
+          "name": "Movement Containment (plants, equipment, contractors)",
+          "keywords": ["containment", "movement restriction", "movement control", "restrict", "stop movement", "quarantine", "hygiene", "decontamination", "equipment", "contractor", "prevent spread", "zone"]
+        },
+        {
+          "id": "cf3_industry",
+          "name": "Industry Communication",
+          "keywords": ["industry", "communicate", "grower", "stakeholder", "inform", "messaging", "notify industry", "advisory", "communication", "update", "engagement"]
+        }
+      ],
+      "branches": {
+        "success": "phase2_effective",
+        "missed_cf1": "phase2a",
+        "missed_cf2": "phase2b",
+        "missed_cf3": "phase2c"
+      }
+    },
+
+    "phase2_effective": {
+      "id": "phase2_effective",
+      "phaseNumber": 2,
+      "title": "Phase 2 — Early Response (Effective Initial Control)",
+      "narrative": [
+        "Laboratory testing confirms the presence of a xylem-limited bacterial pathogen consistent with Xylella fastidiosa complex, triggering immediate activation of national plant biosecurity response arrangements.",
+        "Because early escalation, movement containment, and industry communication were implemented during the suspect phase, the response begins with a high degree of situational control and early alignment across jurisdictions.",
+        "A national incident coordination structure is rapidly established, and a lead jurisdiction is appointed without delay.",
+        "Movement restrictions are already in place for the suspect property and adjacent high-risk properties. Contractor movements have been voluntarily disclosed following early engagement messaging.",
+        "Preliminary trace-back identifies likely links to interstate nursery stock pathways. Initial delimiting surveillance is prioritised around irrigation-linked blocks, upstream nursery supply chains, and neighbouring mixed horticulture enterprises.",
+        "Additional symptomatic olive and grapevine blocks are identified within the same production cluster. Industry cooperation is high due to early and transparent communication."
+      ],
+      "question": "With national coordination now active and initial containment in place, what are your team's priorities to advance the response and prevent further spread?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Surveillance",
+          "keywords": ["surveillance", "delimiting", "inspect", "sample", "field team", "detection", "monitoring", "survey", "property inspection", "expand surveillance"]
+        },
+        {
+          "id": "cf2_tracing",
+          "name": "Tracing",
+          "keywords": ["trace", "tracing", "trace-back", "movement history", "contractor records", "nursery", "track", "pathway", "link", "supply chain", "source"]
+        },
+        {
+          "id": "cf3_containment",
+          "name": "Containment",
+          "keywords": ["containment", "movement restriction", "control zone", "restrict", "quarantine", "prevent spread", "zone", "movement control", "isolate", "border"]
+        }
+      ],
+      "branches": {
+        "success": "phase3a",
+        "missed_cf1": "phase3a",
+        "missed_cf2": "phase3b",
+        "missed_cf3": "phase3c"
+      }
+    },
+
+    "phase2a": {
+      "id": "phase2a",
+      "phaseNumber": 2,
+      "title": "Phase 2A — Reporting Delay Pathway",
+      "narrative": [
+        "Laboratory results suggest Xylella fastidiosa (complex confirmed, subspecies pending). Samples have been sent to 2 independent laboratories for analysis.",
+        "National reporting was delayed. This results in no immediate national coordination structure activation, multiple jurisdictions requesting separate briefings, and inconsistent early messaging between agencies.",
+        "Industry angst and frustration is growing. General confusion and uncertainty are spreading.",
+        "Surveillance has been initiated at the suspect property and a neighbouring vineyard, but there are access delays at additional properties due to harvest operations.",
+        "No agreed national surveillance zone has been established. Informal industry networks are circulating early reports and export stakeholders are seeking reassurance."
+      ],
+      "question": "National reporting was delayed and there is no national coordination structure yet. What actions must your team take immediately to recover this situation?",
+      "criticalElements": [
+        {
+          "id": "cf1_escalation",
+          "name": "National Escalation and Coordination Establishment",
+          "keywords": ["escalate", "national", "coordinate", "IGAB", "ACCPO", "lead jurisdiction", "ICC", "incident control", "national structure", "activate", "coordination", "establish"]
+        },
+        {
+          "id": "cf2_containment",
+          "name": "Containment (equipment, plants, contractors)",
+          "keywords": ["containment", "movement restriction", "quarantine", "restrict", "equipment", "contractor", "plants", "zone", "prevent spread", "hygiene", "movement control"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Industry Communication and Engagement",
+          "keywords": ["communicate", "industry", "grower", "messaging", "advisory", "stakeholder", "consistent messaging", "update", "inform", "clarify", "engagement"]
+        }
+      ],
+      "branches": {
+        "success": "phase3a1",
+        "missed_cf1": "phase3a1",
+        "missed_cf2": "phase3a2",
+        "missed_cf3": "phase3a3"
+      }
+    },
+
+    "phase2b": {
+      "id": "phase2b",
+      "phaseNumber": 2,
+      "title": "Phase 2B — Containment Delay Pathway",
+      "narrative": [
+        "The pest is suspected to be Xylella fastidiosa. Laboratory confirmation is still required. National coordination is established promptly.",
+        "Staff report that prior to movement controls being established, contractors moved between multiple horticulture properties, pruning and harvesting equipment was shared without consistent hygiene controls, and interim movement restrictions were slow to be implemented.",
+        "Multiple properties are now linked through contractor and machinery networks. Early surveillance identifies additional symptomatic vines in connected vineyards.",
+        "Ornamental nursery stock movement has been traced to multiple retail endpoints. Concerns are emerging around pre-confirmation spread."
+      ],
+      "question": "Containment was delayed and spread has already occurred through contractor and equipment networks. What must your team do to bring this under control?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Surveillance",
+          "keywords": ["surveillance", "delimiting", "survey", "inspect", "sample", "field team", "expand", "monitor", "detection", "property"]
+        },
+        {
+          "id": "cf2_containment",
+          "name": "Containment (equipment, plants, contractors)",
+          "keywords": ["containment", "movement restriction", "restrict", "equipment", "contractor", "quarantine", "hygiene", "decontamination", "zone", "prevent further spread"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Industry Communication and Engagement",
+          "keywords": ["communicate", "industry", "grower", "messaging", "contractor", "inform", "clarify", "responsibility", "obligations", "engage", "update"]
+        }
+      ],
+      "branches": {
+        "success": "phase3b1",
+        "missed_cf1": "phase3b2",
+        "missed_cf2": "phase3b1",
+        "missed_cf3": "phase3b3"
+      }
+    },
+
+    "phase2c": {
+      "id": "phase2c",
+      "phaseNumber": 2,
+      "title": "Phase 2C — Communication Delay Pathway",
+      "narrative": [
+        "Xylella fastidiosa is suspected and diagnostic samples are sent to multiple laboratories for confirmation. National coordination is activated.",
+        "However, early communication to industry is inconsistent: different jurisdictions provide different interpretations of movement restrictions, some growers continue normal operations due to lack of clarity, while others self-impose restrictions disrupting supply chains.",
+        "Contractors remain active across properties. Surveillance initiation is uneven due to differing interpretations of risk.",
+        "The export sector seeks urgent clarification on trade implications. Grower groups report confusion and declining trust in messaging. Media begins reporting a 'suspected exotic plant disease outbreak'."
+      ],
+      "question": "Inconsistent communication has caused confusion across industry. Some growers are ignoring restrictions while others are over-reacting. What does your team do?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Surveillance",
+          "keywords": ["surveillance", "delimiting", "survey", "inspect", "sample", "field team", "monitor", "detection", "expand", "priority"]
+        },
+        {
+          "id": "cf2_containment",
+          "name": "Containment (equipment, plants, contractors)",
+          "keywords": ["containment", "movement restriction", "restrict", "quarantine", "movement control", "zone", "hygiene", "equipment", "contractor"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Industry Communication and Engagement",
+          "keywords": ["consistent messaging", "communicate", "industry", "grower", "unified", "clarify", "media", "single message", "advisory", "update", "engagement", "trust"]
+        }
+      ],
+      "branches": {
+        "success": "phase3c1",
+        "missed_cf1": "phase3c2",
+        "missed_cf2": "phase3c1",
+        "missed_cf3": "phase3c3"
+      }
+    },
+
+    "phase3a": {
+      "id": "phase3a",
+      "phaseNumber": 3,
+      "title": "Phase 3A — Surveillance Scaling Under Expansion Pressure",
+      "narrative": [
+        "Delimiting surveillance is rapidly expanded following confirmation of a Xylella fastidiosa complex outbreak in a clustered horticulture production region.",
+        "Initial surveillance deployment is highly coordinated with standardised national protocols, enabling rapid sampling of olives, grapevines, and associated irrigation-linked systems.",
+        "As surveillance expands beyond the core cluster into mixed horticulture and peri-urban zones, operational pressure increases. Field teams remain effective, but scheduling becomes tighter.",
+        "Laboratory intake increases significantly but remains within functional capacity. No detections are recorded outside the initial cluster; however, confidence in completeness begins to depend heavily on consistent coverage across jurisdictions."
+      ],
+      "question": "Surveillance is expanding but pressure on field teams and laboratories is increasing. What actions does your team take to maintain effective coverage and integrate surveillance data into operational decisions?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Surveillance Coverage and Quality",
+          "keywords": ["surveillance", "coverage", "consistent", "standardised", "laboratory", "lab capacity", "field team", "sampling", "delimiting", "expand", "prioritise"]
+        },
+        {
+          "id": "cf2_movement",
+          "name": "Movement Controls",
+          "keywords": ["movement control", "restriction", "zone", "quarantine", "enforce", "containment", "restrict movement", "compliance"]
+        },
+        {
+          "id": "cf3_data",
+          "name": "Surveillance Data Integration into Operational Decision-Making",
+          "keywords": ["data", "integration", "decision", "operational planning", "national picture", "situational awareness", "share data", "reporting", "information", "coordinate"]
+        }
+      ],
+      "branches": {
+        "success": "phase4a1",
+        "missed_cf1": "phase4a2",
+        "missed_cf3": "phase4a3"
+      }
+    },
+
+    "phase3b": {
+      "id": "phase3b",
+      "phaseNumber": 3,
+      "title": "Phase 3B — Trace-back Depth and Integration",
+      "narrative": [
+        "Trace-back investigations rapidly confirm strong links between interstate nursery stock distribution, contractor movements, and shared equipment use across horticulture enterprises.",
+        "Early cooperation from industry supports rapid access to movement records. However, complexity emerges in integrating nursery distribution pathways, contractor movement logs, and property-level operational histories.",
+        "While major pathways are identified, integration across jurisdictions and datasets is uneven. Some reconciliation delays occur between plant health records and contractor databases.",
+        "Prioritisation of high-risk properties is generally effective but occasionally requires revision as new trace-back information becomes available."
+      ],
+      "question": "Trace-back is identifying multiple spread pathways but data integration is proving complex. How does your team ensure trace-back informs operational priorities effectively?",
+      "criticalElements": [
+        {
+          "id": "cf1_tracing",
+          "name": "Tracing Accuracy and Completeness",
+          "keywords": ["trace-back", "tracing", "movement history", "contractor records", "nursery", "pathway", "complete", "accurate", "link", "track"]
+        },
+        {
+          "id": "cf2_jurisdiction",
+          "name": "Jurisdictional Communication",
+          "keywords": ["jurisdictional", "national", "coordinate", "communication", "share information", "align", "cross-border", "consistent", "data sharing"]
+        },
+        {
+          "id": "cf3_surveillance",
+          "name": "Surveillance Prioritisation Based on Trace-back",
+          "keywords": ["prioritise", "priority", "high-risk", "surveillance targeting", "risk-based", "focus", "allocation", "trace-back driven", "linked properties"]
+        }
+      ],
+      "branches": {
+        "success": "phase4b1",
+        "missed_cf1": "phase4b2",
+        "missed_cf3": "phase4b3"
+      }
+    },
+
+    "phase3c": {
+      "id": "phase3c",
+      "phaseNumber": 3,
+      "title": "Phase 3C — Operational Alignment of Containment Strategy",
+      "narrative": [
+        "A national containment strategy is implemented early, including movement controls, delimiting surveillance, and trace-back coordination.",
+        "Initial alignment across jurisdictions is strong, supported by early communication and agreed operational sequencing.",
+        "As workload increases, operational pressure begins to affect consistency of implementation. Surveillance findings are still being shared, but translation into field action varies slightly across jurisdictions.",
+        "Movement controls remain in place and broadly effective, but differences emerge in how quickly new risk information is operationalised on the ground. Containment remains intact, but the system is now dependent on sustained coordination discipline."
+      ],
+      "question": "Operational alignment is starting to slip under pressure. Some jurisdictions are implementing controls inconsistently. What must your team do to maintain national coordination?",
+      "criticalElements": [
+        {
+          "id": "cf1_operationalise",
+          "name": "Operationalising Surveillance and Tracing",
+          "keywords": ["operationalise", "field action", "deploy", "implement", "translate", "surveillance into action", "field teams", "execute", "act on information"]
+        },
+        {
+          "id": "cf2_movement",
+          "name": "Movement Controls",
+          "keywords": ["movement control", "restriction", "enforce", "compliance", "zone", "quarantine", "containment", "restrict movement"]
+        },
+        {
+          "id": "cf3_coordination",
+          "name": "Cross-Jurisdictional Coordination",
+          "keywords": ["coordination", "national", "jurisdictional", "align", "consistent", "cross-border", "agree", "national picture", "unified approach", "communication"]
+        }
+      ],
+      "branches": {
+        "success": "phase4c1",
+        "missed_cf1": "phase4c2",
+        "missed_cf3": "phase4c3"
+      }
+    },
+
+    "phase3a1": {
+      "id": "phase3a1",
+      "phaseNumber": 3,
+      "title": "Phase 3A1 — Surveillance Inconsistency (From 2A Reporting Delay)",
+      "narrative": [
+        "Xylella is confirmed. Additional detections are identified across olives, grapes, and citrus in the region. Surveillance teams are deployed, but coverage is uneven.",
+        "Some high-risk properties are surveyed multiple times, while others are delayed due to unclear prioritisation. Field teams are frequently re-tasked as new instructions are issued.",
+        "There is no single agreed view of surveillance priorities across jurisdictions, leading to inefficiencies in field deployment.",
+        "Industry is receiving mixed information about where restrictions apply."
+      ],
+      "question": "Surveillance is uneven and resources are being wasted on duplicate coverage while some properties are missed. How does your team fix this?",
+      "criticalElements": [
+        {
+          "id": "cf1_scaleup",
+          "name": "Surveillance Scale-up Consistency",
+          "keywords": ["consistent", "standardise", "coverage", "prioritise", "scale up", "surveillance plan", "agreed priorities", "national approach", "coordinate surveillance"]
+        },
+        {
+          "id": "cf2_traceback",
+          "name": "Trace-back and Data Integration",
+          "keywords": ["trace-back", "data", "integrate", "link", "record", "pathway", "database", "combine", "consolidate", "national picture"]
+        },
+        {
+          "id": "cf3_controls",
+          "name": "Operational Consistency of Controls",
+          "keywords": ["consistent", "control", "enforcement", "compliance", "operational", "uniform", "restrictions", "apply consistently", "standard"]
+        }
+      ],
+      "branches": {
+        "success": "phase4a1",
+        "missed_cf1": "phase4a3"
+      }
+    },
+
+    "phase3a2": {
+      "id": "phase3a2",
+      "phaseNumber": 3,
+      "title": "Phase 3A2 — Incomplete High-Risk Coverage (From 2A Reporting Delay)",
+      "narrative": [
+        "Xylella is confirmed. Spread is now confirmed across multiple horticulture properties, but the full extent remains unclear.",
+        "Surveillance is underway but does not consistently target high-risk pathways — nursery-linked sites, contractor-linked sites, irrigation-connected clusters.",
+        "Vector monitoring has started but is not integrated into plant surveillance planning.",
+        "There is uncertainty about whether key transmission pathways are being captured."
+      ],
+      "question": "Surveillance is missing the highest-risk pathways. Vector and plant surveillance are not coordinated. How does your team correct this?",
+      "criticalElements": [
+        {
+          "id": "cf1_targeting",
+          "name": "Surveillance Targeting of High-Risk Pathways",
+          "keywords": ["high-risk", "target", "pathway", "nursery", "contractor", "irrigation", "priority", "focused surveillance", "risk-based", "vector", "transmission"]
+        },
+        {
+          "id": "cf2_traceback",
+          "name": "Trace-back Integration (Nursery and Contractor Networks)",
+          "keywords": ["trace-back", "nursery", "contractor", "network", "link", "movement", "integrate", "records", "supply chain"]
+        },
+        {
+          "id": "cf3_vector",
+          "name": "Alignment of Surveillance with Vector Risk",
+          "keywords": ["vector", "insect", "integrate", "align", "surveillance", "vector monitoring", "sap-feeding", "combined approach", "plant and vector"]
+        }
+      ],
+      "branches": {
+        "success": "phase4a2",
+        "missed_cf1": "phase4a3"
+      }
+    },
+
+    "phase3a3": {
+      "id": "phase3a3",
+      "phaseNumber": 3,
+      "title": "Phase 3A3 — Fragmented Industry Information (From 2A Reporting Delay)",
+      "narrative": [
+        "Xylella is confirmed. As detections increase, industry engagement becomes less consistent.",
+        "Some growers provide full access and records, while others delay or restrict entry. Contractor movement histories are incomplete in several cases.",
+        "Surveillance teams report gaps in information due to inconsistent cooperation.",
+        "Informal communication channels are increasingly being used by industry in place of official updates."
+      ],
+      "question": "Industry cooperation is fragmenting and unofficial information is spreading. How does your team re-establish trust and obtain the information needed for operations?",
+      "criticalElements": [
+        {
+          "id": "cf1_cooperation",
+          "name": "Industry Cooperation with Surveillance and Tracing",
+          "keywords": ["cooperation", "access", "grower", "industry", "engage", "facilitate", "cooperation agreement", "voluntary", "records", "trust"]
+        },
+        {
+          "id": "cf2_movement",
+          "name": "Completeness of Movement History Data",
+          "keywords": ["movement history", "complete", "records", "contractor", "data", "trace-back", "pathway", "information", "gap"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Consistency of Official Communication to Industry",
+          "keywords": ["consistent", "official", "communication", "messaging", "advisory", "single source", "update", "trust", "transparent", "national messaging"]
+        }
+      ],
+      "branches": {
+        "success": "phase4a1",
+        "missed_cf3": "phase4a3"
+      }
+    },
+
+    "phase3b1": {
+      "id": "phase3b1",
+      "phaseNumber": 3,
+      "title": "Phase 3B1 — Machinery-Linked Spread (From 2B Containment Delay)",
+      "narrative": [
+        "Xylella is confirmed. Multiple detections are linked to shared machinery and contractor movement across horticulture properties.",
+        "Equipment has been used across multiple farms without effective cleaning between sites. Decontamination records are missing or incomplete.",
+        "Tracing confirms likely spread along contractor networks, but full movement history cannot be reconstructed.",
+        "Containment zones are expanded, but confidence in spread pathways remains limited."
+      ],
+      "question": "Equipment and contractor movement has spread infection before containment was in place. How does your team reconstruct spread pathways and prevent further transmission?",
+      "criticalElements": [
+        {
+          "id": "cf1_machinery",
+          "name": "Machinery and Contractor Movement Control",
+          "keywords": ["machinery", "equipment", "contractor", "movement", "restrict", "hygiene", "decontaminate", "control", "stop", "prevent"]
+        },
+        {
+          "id": "cf2_traceability",
+          "name": "Traceability of Equipment and Contractor Pathways",
+          "keywords": ["traceability", "trace", "records", "contractor", "equipment", "movement history", "pathway", "reconstruct", "link", "track"]
+        },
+        {
+          "id": "cf3_hygiene",
+          "name": "Enforcement of Hygiene and Decontamination Practices",
+          "keywords": ["hygiene", "decontamination", "clean", "sanitise", "enforce", "compliance", "protocols", "standards", "cleaning procedures"]
+        }
+      ],
+      "branches": {
+        "success": "phase4b1",
+        "missed_cf2": "phase4b2"
+      }
+    },
+
+    "phase3b2": {
+      "id": "phase3b2",
+      "phaseNumber": 3,
+      "title": "Phase 3B2 — Surveillance and Tracing Overload (From 2B Containment Delay)",
+      "narrative": [
+        "Xylella is confirmed. The outbreak spans multiple jurisdictions and is now operationally complex.",
+        "Surveillance and tracing teams are operating at or beyond capacity. Effort is duplicated in some regions and absent in others.",
+        "Field deployment decisions are delayed due to unclear prioritisation.",
+        "There is no consistent sequencing of high-risk inspections across regions."
+      ],
+      "question": "Surveillance and tracing teams are overwhelmed and effort is being duplicated or wasted. How does your team bring order to the response?",
+      "criticalElements": [
+        {
+          "id": "cf1_prioritisation",
+          "name": "Surveillance Prioritisation Under Surge Conditions",
+          "keywords": ["prioritise", "surge", "triage", "allocate", "resource", "priority", "sequence", "high-risk first", "decision", "deprioritise"]
+        },
+        {
+          "id": "cf2_tracing",
+          "name": "Tracing Capacity and Coordination",
+          "keywords": ["tracing", "capacity", "coordinate", "team", "workforce", "resources", "scale up", "support", "additional staff", "trace-back"]
+        },
+        {
+          "id": "cf3_deployment",
+          "name": "Field Deployment Consistency Across Jurisdictions",
+          "keywords": ["consistent", "deployment", "field", "jurisdiction", "national", "agree", "coordinate", "uniform", "sequencing", "align"]
+        }
+      ],
+      "branches": {
+        "success": "phase4b1",
+        "missed_cf1": "phase4b3"
+      }
+    },
+
+    "phase3b3": {
+      "id": "phase3b3",
+      "phaseNumber": 3,
+      "title": "Phase 3B3 — Mixed Control Strategy (From 2B Containment Delay)",
+      "narrative": [
+        "Xylella is confirmed. Uncertainty remains about whether spread is driven primarily by machinery and contractors, or by insect vectors.",
+        "As a result, control strategies differ across jurisdictions. Some regions focus on movement restrictions, others prioritise vector management. This creates inconsistent implementation of response measures.",
+        "Industry is receiving conflicting advice on what actions matter most."
+      ],
+      "question": "There is no national agreement on the dominant transmission pathway, and different regions are running different control strategies. How does your team resolve this?",
+      "criticalElements": [
+        {
+          "id": "cf1_pathways",
+          "name": "Agreement on Dominant Transmission Pathways",
+          "keywords": ["transmission", "pathway", "agree", "evidence", "national", "dominant", "vector", "equipment", "machinery", "contractor", "determine"]
+        },
+        {
+          "id": "cf2_alignment",
+          "name": "Alignment of Control Strategies Nationally",
+          "keywords": ["align", "national", "consistent", "strategy", "control", "agree", "unified", "coordinate", "single approach"]
+        },
+        {
+          "id": "cf3_guidance",
+          "name": "Consistency of Operational Guidance to Industry",
+          "keywords": ["guidance", "consistent", "industry", "messaging", "advice", "communicate", "clear", "unified", "single message", "operational guidance"]
+        }
+      ],
+      "branches": {
+        "success": "phase4b1",
+        "missed_cf1": "phase4b3"
+      }
+    },
+
+    "phase3c1": {
+      "id": "phase3c1",
+      "phaseNumber": 3,
+      "title": "Phase 3C1 — Movement Non-Compliance (From 2C Communication Delay)",
+      "narrative": [
+        "Xylella is confirmed. Inconsistent early communication has led to uneven understanding of movement restrictions.",
+        "Some contractors and growers continue operations unknowingly in restricted areas. This results in new infection clusters outside expected containment zones.",
+        "Field teams are increasingly diverted into compliance enforcement rather than surveillance and tracing."
+      ],
+      "question": "Non-compliance is creating new infection clusters outside containment zones. Field teams are being pulled into enforcement rather than surveillance. What are your team's priorities?",
+      "criticalElements": [
+        {
+          "id": "cf1_messaging",
+          "name": "Clarity and Timing of Movement Restriction Messaging",
+          "keywords": ["clear", "messaging", "timing", "movement restriction", "communicate", "advisory", "consistent", "unambiguous", "inform", "update", "restriction"]
+        },
+        {
+          "id": "cf2_compliance",
+          "name": "Compliance with Movement Controls",
+          "keywords": ["compliance", "enforce", "follow", "movement control", "restriction", "adhere", "monitor compliance", "non-compliance", "check", "enforcement"]
+        },
+        {
+          "id": "cf3_awareness",
+          "name": "Awareness of Obligations Across Industry",
+          "keywords": ["awareness", "obligations", "industry", "know", "understand", "responsibilities", "training", "inform", "grower", "contractor", "duty"]
+        }
+      ],
+      "branches": {
+        "success": "phase4c1",
+        "missed_cf2": "phase4c2"
+      }
+    },
+
+    "phase3c2": {
+      "id": "phase3c2",
+      "phaseNumber": 3,
+      "title": "Phase 3C2 — Industry Disengagement (From 2C Communication Delay)",
+      "narrative": [
+        "Xylella is confirmed. Industry confidence is declining due to inconsistent messaging across jurisdictions.",
+        "Some growers stop reporting suspected symptoms and instead rely on informal networks. Access to properties becomes slower and more restricted.",
+        "Surveillance quality is affected by reduced cooperation."
+      ],
+      "question": "Growers are disengaging from the official response. Unreported cases may be spreading undetected. How does your team rebuild trust and restore cooperation?",
+      "criticalElements": [
+        {
+          "id": "cf1_national_comms",
+          "name": "Consistency of National Messaging",
+          "keywords": ["consistent", "national", "messaging", "unified", "single", "communication", "advisory", "align", "message", "one voice"]
+        },
+        {
+          "id": "cf2_trust",
+          "name": "Industry Trust and Engagement",
+          "keywords": ["trust", "engagement", "rebuild", "industry", "grower", "relationship", "confidence", "transparent", "consultation", "partner"]
+        },
+        {
+          "id": "cf3_access",
+          "name": "Access for Surveillance and Tracing",
+          "keywords": ["access", "property access", "entry", "grower cooperation", "facilitate", "biosecurity", "negotiate", "consent", "allow inspection"]
+        }
+      ],
+      "branches": {
+        "success": "phase4c1",
+        "missed_cf2": "phase4c3"
+      }
+    },
+
+    "phase3c3": {
+      "id": "phase3c3",
+      "phaseNumber": 3,
+      "title": "Phase 3C3 — Loss of National Situational Clarity (From 2C Communication Delay)",
+      "narrative": [
+        "Xylella is confirmed. Multiple detections are recorded, but the national picture is incomplete.",
+        "Data is being collected inconsistently across jurisdictions and systems are not fully integrated. This creates gaps in understanding spread pathways and slows national decision-making on containment zones.",
+        "There is increasing uncertainty about the true extent of the outbreak."
+      ],
+      "question": "The national picture is fragmented — data is inconsistent and decision-making is slow. How does your team establish shared situational awareness across jurisdictions?",
+      "criticalElements": [
+        {
+          "id": "cf1_awareness",
+          "name": "National Situational Awareness",
+          "keywords": ["situational awareness", "national picture", "overview", "shared understanding", "complete", "accurate", "picture", "current status"]
+        },
+        {
+          "id": "cf2_data",
+          "name": "Data Integration and Reporting Consistency",
+          "keywords": ["data", "integrate", "consistent", "reporting", "system", "database", "standardise", "collect", "share", "compatible"]
+        },
+        {
+          "id": "cf3_sharing",
+          "name": "Cross-Jurisdictional Information Sharing",
+          "keywords": ["cross-jurisdictional", "share", "information", "jurisdictions", "communicate", "national", "coordinate", "exchange", "common platform"]
+        }
+      ],
+      "branches": {
+        "success": "phase4c1",
+        "missed_cf2": "phase4c3"
+      }
+    },
+
+    "phase4a1": {
+      "id": "phase4a1",
+      "phaseNumber": 4,
+      "title": "Phase 4A1 — Strong Surveillance Supports Clean Rollout",
+      "narrative": [
+        "Surveillance coverage is strong and consistent across the affected region. Field teams have clear confirmation of infected blocks, good coverage of neighbouring properties, and up-to-date lab results with minimal backlog.",
+        "Destruction teams are deployed to confirmed sites without delay. Surveillance teams shift to verification around the edges. Trace-back teams focus on confirming known pathways.",
+        "Disposal is organised early — contractors are booked in advance, suitable burial and processing options are identified, minimal waiting time between destruction and removal.",
+        "ORC processing begins smoothly — growers understand eligibility, assessments are completed alongside field visits. Workforce is busy but stable with clear roles across surveillance, operations, and ORC."
+      ],
+      "question": "Operations are running well but scale is increasing. Destruction, disposal, and ORC are all active simultaneously. How does your team maintain momentum and manage competing priorities?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Maintaining Surveillance Quality",
+          "keywords": ["surveillance", "maintain", "quality", "consistent", "coverage", "lab", "sample", "detection", "verification"]
+        },
+        {
+          "id": "cf2_diagnostics",
+          "name": "Diagnostics Turnaround",
+          "keywords": ["diagnostics", "lab", "turnaround", "results", "fast", "rapid", "samples", "laboratory", "processing time"]
+        },
+        {
+          "id": "cf3_destruction",
+          "name": "Destruction and Disposal Coordination",
+          "keywords": ["destruction", "disposal", "coordinate", "sequencing", "contractor", "remove", "clear", "incinerate", "burial", "schedule"]
+        }
+      ],
+      "branches": {
+        "success": "phase5a1",
+        "missed_cf1": "phase5a2",
+        "missed_cf3": "phase5a3"
+      }
+    },
+
+    "phase4a2": {
+      "id": "phase4a2",
+      "phaseNumber": 4,
+      "title": "Phase 4A2 — Surveillance Gaps Slow Field Decisions",
+      "narrative": [
+        "Core infected sites are confirmed, but surveillance gaps remain in outer areas. Field teams encounter properties with incomplete sampling, delays in lab results for some zones, and uncertainty about whether infection extends beyond known sites.",
+        "Some destruction is delayed pending confirmation. Surveillance teams are pulled back into areas already planned for intervention. Trace-back teams continue identifying new links that require checking.",
+        "Disposal planning becomes reactive — contractors are rescheduled as priorities shift. ORC processing is uneven — some growers proceed quickly, others wait for confirmation."
+      ],
+      "question": "Surveillance gaps are causing delays in destruction decisions. How does your team close the gaps while keeping operations moving?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Surveillance Coverage Closure",
+          "keywords": ["surveillance", "close gap", "complete", "coverage", "fill", "missing", "outer area", "prioritise", "targeted"]
+        },
+        {
+          "id": "cf2_lab",
+          "name": "Lab Turnaround Time",
+          "keywords": ["lab", "turnaround", "results", "fast", "expedite", "diagnostic", "delay", "samples", "processing"]
+        },
+        {
+          "id": "cf3_threshold",
+          "name": "Clear Go/No-Go Thresholds for Destruction",
+          "keywords": ["threshold", "decision", "criteria", "go", "no-go", "destruction decision", "confirm", "evidence", "guidelines", "when to destroy"]
+        }
+      ],
+      "branches": {
+        "success": "phase5a1",
+        "missed_cf3": "phase5a2"
+      }
+    },
+
+    "phase4a3": {
+      "id": "phase4a3",
+      "phaseNumber": 4,
+      "title": "Phase 4A3 — Surveillance Inconsistency Creates Confusion",
+      "narrative": [
+        "Surveillance has been conducted unevenly across regions. Some areas have dense sampling and clear results; others have limited coverage, inconsistent methods, and delayed or conflicting lab results.",
+        "Different teams have different views of infection extent. Some properties are scheduled for destruction while nearby sites are still being assessed.",
+        "Trace-back continues to add complexity — new properties are identified after plans are already set. Disposal and contractor scheduling becomes difficult, with crews moved between sites at short notice.",
+        "ORC messaging varies — growers receive different advice depending on who they speak to. Workforce time is increasingly spent aligning decisions rather than executing them."
+      ],
+      "question": "Surveillance inconsistency has created conflicting views of the outbreak extent. Teams are misaligned and resources are being wasted. What does your team do?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Standardising Surveillance Across Regions",
+          "keywords": ["standardise", "consistent", "surveillance", "national approach", "protocol", "align", "coordinate", "agree", "uniform", "coverage"]
+        },
+        {
+          "id": "cf2_data",
+          "name": "Data Sharing and National Picture",
+          "keywords": ["data", "share", "national picture", "information", "communicate", "database", "consistent reporting", "situational awareness", "update"]
+        },
+        {
+          "id": "cf3_industry",
+          "name": "Industry Engagement and Consistent Messaging",
+          "keywords": ["industry", "engagement", "messaging", "consistent", "grower", "communicate", "advisory", "single message", "update", "trust"]
+        }
+      ],
+      "branches": {
+        "success": "phase5a3",
+        "missed_cf1": "phase5a3"
+      }
+    },
+
+    "phase4b1": {
+      "id": "phase4b1",
+      "phaseNumber": 4,
+      "title": "Phase 4B1 — Clear Trace-back Enables Confident Action",
+      "narrative": [
+        "Trace-back has identified clear pathways through nursery stock movements and contractor equipment and labour. This gives confidence in where to act — destruction targets both infected and high-risk linked properties, surveillance focuses on validating known pathways.",
+        "Field operations are proactive — teams move ahead of potential spread, fewer surprises emerge during operations.",
+        "Disposal is planned at scale with multiple sites scheduled efficiently. ORC decisions are supported by strong evidence — eligibility is clearer, fewer disputes arise.",
+        "Workforce is stretched but focused, with clear priorities."
+      ],
+      "question": "Trace-back is strong but operations are scaling rapidly. How does your team link trace-back findings directly into field action and keep all functions coordinated?",
+      "criticalElements": [
+        {
+          "id": "cf1_traceback",
+          "name": "Trace-back Completeness",
+          "keywords": ["trace-back", "complete", "pathways", "all links", "full picture", "nursery", "contractor", "movement", "network"]
+        },
+        {
+          "id": "cf2_action",
+          "name": "Linking Trace-back to Field Action",
+          "keywords": ["link", "action", "field", "deploy", "respond", "act on trace-back", "operational", "translate", "implement", "decision"]
+        },
+        {
+          "id": "cf3_orc",
+          "name": "Evidence for ORC Decisions",
+          "keywords": ["ORC", "evidence", "compensation", "eligibility", "support", "documentation", "confirm", "assessment", "grower"]
+        }
+      ],
+      "branches": {
+        "success": "phase5b1",
+        "missed_cf1": "phase5b2",
+        "missed_cf3": "phase5b3"
+      }
+    },
+
+    "phase4b2": {
+      "id": "phase4b2",
+      "phaseNumber": 4,
+      "title": "Phase 4B2 — Trace-back Uncertainty Slows Decisions",
+      "narrative": [
+        "Trace-back has identified some pathways, but gaps remain — incomplete contractor movement records, uncertainty about timing of spread, missing links between properties.",
+        "This creates hesitation — some properties are treated as high risk without confirmation, others are delayed pending further investigation. Surveillance is redirected to verify uncertain links.",
+        "Disposal planning becomes inefficient — some sites prioritised conservatively, others delayed unnecessarily. ORC processing slows as eligibility requires additional checks."
+      ],
+      "question": "Incomplete trace-back data is causing hesitation and inefficiency across all operations. How does your team make confident decisions under uncertainty?",
+      "criticalElements": [
+        {
+          "id": "cf1_quality",
+          "name": "Quality of Trace-back Data",
+          "keywords": ["data quality", "trace-back", "complete", "records", "accurate", "contractor", "movement", "fill gaps", "obtain records"]
+        },
+        {
+          "id": "cf2_uncertainty",
+          "name": "Prioritising Under Uncertainty",
+          "keywords": ["uncertainty", "prioritise", "decision", "risk", "precautionary", "act despite", "assume", "risk-based decision", "proceed", "threshold"]
+        },
+        {
+          "id": "cf3_flow",
+          "name": "Information Flow to Operations",
+          "keywords": ["information flow", "communicate", "share", "update", "operations", "field teams", "real-time", "timely", "inform"]
+        }
+      ],
+      "branches": {
+        "success": "phase5b1",
+        "missed_cf1": "phase5b2"
+      }
+    },
+
+    "phase4b3": {
+      "id": "phase4b3",
+      "phaseNumber": 4,
+      "title": "Phase 4B3 — Trace-back Expansion Increases Scale",
+      "narrative": [
+        "Trace-back reveals a wider-than-expected network of linked properties. Additional regions are drawn into the response, more contractors and properties are identified, and surveillance zones expand rapidly.",
+        "Destruction teams are spread across a larger area, surveillance teams are stretched thin, and logistics become more complex.",
+        "Disposal capacity is pressured — more material than expected requires removal, transport distances increase. ORC claims rise sharply with increased administrative workload.",
+        "Workforce capacity becomes a key constraint as all functions scale at once."
+      ],
+      "question": "The outbreak is larger than expected and all functions are scaling simultaneously. How does your team manage surge capacity across destruction, disposal, surveillance, tracing, and ORC?",
+      "criticalElements": [
+        {
+          "id": "cf1_scaling",
+          "name": "Scaling Operations",
+          "keywords": ["scale", "surge", "expand", "additional", "resources", "workforce", "capacity", "scale up", "increase", "mobilise"]
+        },
+        {
+          "id": "cf2_workforce",
+          "name": "Workforce Capacity",
+          "keywords": ["workforce", "staff", "personnel", "capacity", "surge", "additional", "recruit", "deploy", "people", "team"]
+        },
+        {
+          "id": "cf3_disposal",
+          "name": "Disposal Capacity",
+          "keywords": ["disposal", "capacity", "site", "transport", "removal", "burial", "incineration", "logistics", "contractor", "approve"]
+        }
+      ],
+      "branches": {
+        "success": "phase5b1",
+        "missed_cf2": "phase5b3"
+      }
+    },
+
+    "phase4c1": {
+      "id": "phase4c1",
+      "phaseNumber": 4,
+      "title": "Phase 4C1 — Well-Aligned Operations Run Smoothly",
+      "narrative": [
+        "Operations are well coordinated across surveillance teams, trace-back analysts, field crews, and ORC teams. Properties are assessed, cleared, and processed in sequence with minimal downtime.",
+        "Contractors are mobilised on time and working to consistent standards. Disposal runs efficiently — sites are pre-approved and transport is coordinated.",
+        "ORC is integrated into operations — assessments occur during site visits and growers receive clear guidance. Workforce remains under pressure but is functioning effectively."
+      ],
+      "question": "Operations are well-coordinated but the volume of work is increasing rapidly. How does your team sustain performance as demand escalates?",
+      "criticalElements": [
+        {
+          "id": "cf1_coordination",
+          "name": "Field Coordination",
+          "keywords": ["coordinate", "field", "teams", "sequence", "planning", "schedule", "align", "prioritise", "operational plan"]
+        },
+        {
+          "id": "cf2_contractor",
+          "name": "Contractor Management",
+          "keywords": ["contractor", "manage", "mobilise", "standards", "decontamination", "schedule", "coordinate", "performance", "compliance"]
+        },
+        {
+          "id": "cf3_orc",
+          "name": "Integration of ORC into Operations",
+          "keywords": ["ORC", "integrate", "compensation", "field visit", "assessment", "grower", "eligibility", "alongside", "concurrent"]
+        }
+      ],
+      "branches": {
+        "success": "phase5c1",
+        "missed_cf2": "phase5c2",
+        "missed_cf3": "phase5c3"
+      }
+    },
+
+    "phase4c2": {
+      "id": "phase4c2",
+      "phaseNumber": 4,
+      "title": "Phase 4C2 — Operational Friction Slows Progress",
+      "narrative": [
+        "Coordination remains in place, but friction is emerging — delays in contractor mobilisation, inconsistent site access approvals, misalignment between surveillance and destruction timing.",
+        "Some sites wait for crews, others are visited multiple times. Disposal is affected with short delays between destruction and removal and some rescheduling required.",
+        "ORC processing varies — some claims progress quickly, others are delayed due to missing information. Field teams spend more time coordinating than expected."
+      ],
+      "question": "Operational friction is slowing progress. Delays and coordination failures are creating a backlog. How does your team smooth the process?",
+      "criticalElements": [
+        {
+          "id": "cf1_contractor",
+          "name": "Contractor Availability",
+          "keywords": ["contractor", "availability", "mobilise", "book", "schedule", "ready", "on time", "access", "crew"]
+        },
+        {
+          "id": "cf2_access",
+          "name": "Site Access Processes",
+          "keywords": ["site access", "access", "approval", "entry", "grower", "agreement", "process", "streamline", "facilitate", "consent"]
+        },
+        {
+          "id": "cf3_teams",
+          "name": "Coordination Between Teams",
+          "keywords": ["coordinate", "teams", "align", "communicate", "sequence", "planning", "schedule", "handover", "integrated"]
+        }
+      ],
+      "branches": {
+        "success": "phase5c1",
+        "missed_cf3": "phase5c2"
+      }
+    },
+
+    "phase4c3": {
+      "id": "phase4c3",
+      "phaseNumber": 4,
+      "title": "Phase 4C3 — Poor Coordination Creates Rework and Delays",
+      "narrative": [
+        "Operational coordination is breaking down under pressure. Destruction teams arrive before surveillance is complete. Disposal is delayed due to lack of planning. Contractors are double-booked or unavailable.",
+        "Response performance varies widely across regions. Some areas maintain strong cooperation and steady progress, while others experience delays due to access and engagement challenges.",
+        "Surveillance coverage is uneven with gaps in areas where access is limited. ORC processing timelines vary, contributing to different levels of confidence across industry groups."
+      ],
+      "question": "Coordination has broken down and performance is inconsistent across regions. How does your team reset and standardise operations?",
+      "criticalElements": [
+        {
+          "id": "cf1_consistent",
+          "name": "Consistent Operations Across Regions",
+          "keywords": ["consistent", "operations", "national", "standardise", "uniform", "align", "same approach", "coordinate", "regions"]
+        },
+        {
+          "id": "cf2_resources",
+          "name": "Resource Allocation",
+          "keywords": ["resource", "allocate", "prioritise", "deploy", "workforce", "redistribute", "surge", "support", "assist", "redirect"]
+        },
+        {
+          "id": "cf3_orc",
+          "name": "ORC Consistency",
+          "keywords": ["ORC", "consistent", "compensation", "eligibility", "timing", "fair", "payment", "standard", "clarity", "process"]
+        }
+      ],
+      "branches": {
+        "success": "phase5c1",
+        "missed_cf1": "phase5c3"
+      }
+    },
+
+    "phase5a1": {
+      "id": "phase5a1",
+      "phaseNumber": 5,
+      "title": "Phase 5A1 — Destruction Outpaces Coordination",
+      "narrative": [
+        "Destruction and disposal operations are underway across multiple infected properties and continue to expand. However, coordination is starting to slip — destruction teams arrive before final property verification is complete, surveillance teams are still sampling properties scheduled for removal, trace-back teams continue identifying new linked properties mid-operation.",
+        "This creates rework — some sites are revisited multiple times, sequencing of destruction is inconsistent across the region. Disposal is progressing but contractor availability is uneven.",
+        "ORC processing has started but growers are seeking clarity before destruction proceeds, and some claims are paused pending confirmation of property status."
+      ],
+      "question": "Operations are moving fast but getting out of sequence — destruction is overtaking verification and creating rework. How does your team establish clear operational sequencing?",
+      "criticalElements": [
+        {
+          "id": "cf1_sequencing",
+          "name": "Clear Sequencing Between Surveillance, Tracing, and Destruction",
+          "keywords": ["sequencing", "sequence", "order", "clear steps", "before", "verification first", "confirm then destroy", "process", "workflow"]
+        },
+        {
+          "id": "cf2_coordination",
+          "name": "Coordination of Field Teams Across Functions",
+          "keywords": ["coordinate", "field teams", "align", "functions", "communicate", "surveillance", "tracing", "destruction", "together", "integrated"]
+        },
+        {
+          "id": "cf3_orc",
+          "name": "Timely ORC Decisions to Support Operations",
+          "keywords": ["ORC", "timely", "decision", "compensation", "grower", "support", "clear", "eligibility", "rapid", "proceed"]
+        }
+      ],
+      "branches": {
+        "success": "phase6a",
+        "missed_cf1": "phase6b"
+      }
+    },
+
+    "phase5a2": {
+      "id": "phase5a2",
+      "phaseNumber": 5,
+      "title": "Phase 5A2 — Surveillance and Tracing Lag Behind Operations",
+      "narrative": [
+        "Destruction is progressing steadily, but surveillance and trace-back activities are struggling to keep pace. New detections continue to emerge — some identified after nearby properties have already been cleared, trace-back is still linking properties across contractor and nursery networks.",
+        "Some areas require follow-up surveillance after initial operations. Field teams report gaps in movement histories from contractors and delays in lab turnaround.",
+        "Some sites are held longer while status is confirmed. Some growers are waiting for confirmation before agreeing to destruction, while others are proceeding but expecting rapid compensation."
+      ],
+      "question": "Destruction is moving faster than surveillance and tracing can keep up. This risks missing infections and creating legal issues around ORC. How does your team rebalance operations?",
+      "criticalElements": [
+        {
+          "id": "cf1_coverage",
+          "name": "Surveillance Coverage Keeping Up with Spread",
+          "keywords": ["surveillance", "coverage", "keep up", "pace", "scale", "concurrent", "real-time", "alongside operations", "sufficient", "expand"]
+        },
+        {
+          "id": "cf2_traceback",
+          "name": "Trace-back Completeness",
+          "keywords": ["trace-back", "complete", "all pathways", "contractor", "movement history", "full", "comprehensive", "gap", "confirm links"]
+        },
+        {
+          "id": "cf3_diagnostics",
+          "name": "Diagnostics Turnaround Time",
+          "keywords": ["diagnostics", "lab", "turnaround", "fast", "results", "expedite", "rapid", "process", "reduce delay"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf1": "phase6c"
+      }
+    },
+
+    "phase5a3": {
+      "id": "phase5a3",
+      "phaseNumber": 5,
+      "title": "Phase 5A3 — Workforce Stretched Across All Functions",
+      "narrative": [
+        "The response is now operating at full scale. Teams are working across destruction supervision, disposal coordination, surveillance follow-up, trace-back verification, and ORC engagement with growers.",
+        "This is creating strain — staff fatigue is increasing, prioritisation is becoming harder, some tasks are delayed as teams shift between roles.",
+        "Operational impacts include slower destruction rates at some sites, delays in surveillance follow-up, inconsistent communication to growers. ORC processing is active but staff supporting ORC are also supporting field operations."
+      ],
+      "question": "The workforce is spread across too many roles simultaneously. Fatigue and poor prioritisation are affecting performance. How does your team manage workforce capacity and prioritise tasks?",
+      "criticalElements": [
+        {
+          "id": "cf1_workforce",
+          "name": "Workforce Capacity",
+          "keywords": ["workforce", "capacity", "additional staff", "surge", "fatigue", "rest", "relief", "support", "scale up", "resources"]
+        },
+        {
+          "id": "cf2_prioritisation",
+          "name": "Clear Task Prioritisation",
+          "keywords": ["prioritise", "priority", "task", "sequence", "clear roles", "what first", "decision", "ranking", "delegate", "focus"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Consistent Communication to Growers",
+          "keywords": ["consistent", "communication", "grower", "industry", "messaging", "update", "single message", "regular", "inform"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf1": "phase6c"
+      }
+    },
+
+    "phase5b1": {
+      "id": "phase5b1",
+      "phaseNumber": 5,
+      "title": "Phase 5B1 — Disposal Constraints Slow Operations",
+      "narrative": [
+        "Destruction continues across infected properties, but disposal is now the limiting step. Challenges include limited availability of approved disposal sites, transport delays between properties and disposal locations, and environmental approval requirements slowing some operations.",
+        "Cleared plant material is held temporarily at some sites. Destruction teams are delayed waiting for disposal clearance. New linked properties are still being identified and added to the destruction list faster than they can be cleared.",
+        "ORC claims continue to rise — growers are concerned about delays between destruction and site clearance, some are seeking clarity on how delays affect compensation."
+      ],
+      "question": "Disposal is the bottleneck — cleared material is piling up and operations are stalling. How does your team resolve the disposal constraints?",
+      "criticalElements": [
+        {
+          "id": "cf1_disposal",
+          "name": "Disposal Capacity",
+          "keywords": ["disposal", "capacity", "site", "approved", "additional", "expand", "increase", "approve new sites", "burial", "incineration"]
+        },
+        {
+          "id": "cf2_transport",
+          "name": "Transport and Logistics",
+          "keywords": ["transport", "logistics", "route", "coordinate", "schedule", "truck", "movement", "distance", "efficiency", "plan"]
+        },
+        {
+          "id": "cf3_environmental",
+          "name": "Environmental Approvals",
+          "keywords": ["environmental", "approval", "permit", "regulatory", "approval process", "expedite", "fast-track", "compliance", "assessment", "EPA"]
+        }
+      ],
+      "branches": {
+        "success": "phase6a",
+        "missed_cf1": "phase6b"
+      }
+    },
+
+    "phase5b2": {
+      "id": "phase5b2",
+      "phaseNumber": 5,
+      "title": "Phase 5B2 — Trace-back Expands Faster Than Operations",
+      "narrative": [
+        "Trace-back investigations identify a wider network of linked properties than initially expected. New risks include contractor movement across multiple regions, additional nursery-linked pathways, and previously unknown connections between properties.",
+        "This leads to rapid expansion of surveillance zones and additional properties requiring inspection and possible destruction. Destruction teams are working across a larger geographic area and reprioritising sites frequently.",
+        "Disposal and ORC processes are both under pressure due to increased scale. Growers outside the original area are seeking information on risk and requesting surveillance and guidance."
+      ],
+      "question": "The outbreak footprint has expanded unexpectedly. All functions must scale rapidly across new regions. How does your team manage this expansion?",
+      "criticalElements": [
+        {
+          "id": "cf1_traceback",
+          "name": "Trace-back Speed",
+          "keywords": ["trace-back", "speed", "rapid", "fast", "priority", "expedite", "quickly", "timely", "complete quickly"]
+        },
+        {
+          "id": "cf2_surveillance",
+          "name": "Surveillance Scaling",
+          "keywords": ["surveillance", "scale", "expand", "new regions", "additional teams", "surge", "mobilise", "rapid deployment", "extend"]
+        },
+        {
+          "id": "cf3_planning",
+          "name": "Operational Planning Across Regions",
+          "keywords": ["operational planning", "regions", "multi-region", "coordinate", "national plan", "cross-regional", "align", "consistent approach"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf2": "phase6c"
+      }
+    },
+
+    "phase5b3": {
+      "id": "phase5b3",
+      "phaseNumber": 5,
+      "title": "Phase 5B3 — ORC Volume Increases Sharply",
+      "narrative": [
+        "As destruction expands, ORC claims increase rapidly. Challenges include high volume of claims submitted in a short period, variation in crop types and property structures, and questions about eligibility for exposed vs infected properties.",
+        "ORC teams are working alongside field teams to confirm property status. Delays in claims processing begin to appear. Some sites are delayed due to ORC-related discussions.",
+        "Growers seek assurance before allowing destruction to proceed. Surveillance and tracing remain active, adding further complexity to eligibility decisions."
+      ],
+      "question": "ORC claims are overwhelming the system and some growers are blocking destruction pending compensation certainty. How does your team manage ORC volume while keeping operations moving?",
+      "criticalElements": [
+        {
+          "id": "cf1_orc",
+          "name": "ORC Processing Speed",
+          "keywords": ["ORC", "speed", "process", "fast", "expedite", "timely", "rapid", "claims processing", "reduce delay"]
+        },
+        {
+          "id": "cf2_eligibility",
+          "name": "Clear Eligibility Rules",
+          "keywords": ["eligibility", "rules", "criteria", "clear", "defined", "communicated", "consistent", "fair", "guidelines", "who qualifies"]
+        },
+        {
+          "id": "cf3_coordination",
+          "name": "Coordination Between ORC and Field Teams",
+          "keywords": ["ORC", "field teams", "coordinate", "together", "concurrent", "integrated", "align", "communication", "joint approach"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf1": "phase6c"
+      }
+    },
+
+    "phase5c1": {
+      "id": "phase5c1",
+      "phaseNumber": 5,
+      "title": "Phase 5C1 — Mixed Compliance Affects Operations",
+      "narrative": [
+        "Destruction and surveillance continue, but compliance is uneven across the region. Some growers cooperate fully and allow rapid access; others delay or question requirements.",
+        "This results in uneven progress of destruction, delays in surveillance at some properties, and additional effort required for engagement and access.",
+        "Trace-back is impacted by incomplete records from some operators and delays in confirming movement pathways. Uncertainty about compensation affects growers' willingness to proceed with destruction."
+      ],
+      "question": "Compliance is uneven and affecting operational efficiency. How does your team improve compliance while maintaining grower relationships?",
+      "criticalElements": [
+        {
+          "id": "cf1_compliance",
+          "name": "Compliance with Movement Controls",
+          "keywords": ["compliance", "movement control", "restrict", "enforce", "follow", "adhere", "non-compliance", "monitor", "check", "requirements"]
+        },
+        {
+          "id": "cf2_access",
+          "name": "Property Access",
+          "keywords": ["access", "property", "grower", "entry", "facilitate", "consent", "negotiate", "allow", "inspection", "site visit"]
+        },
+        {
+          "id": "cf3_comms",
+          "name": "Clear Communication",
+          "keywords": ["clear", "communicate", "grower", "message", "advisory", "inform", "consistent", "transparency", "explain", "update"]
+        }
+      ],
+      "branches": {
+        "success": "phase6a",
+        "missed_cf2": "phase6b"
+      }
+    },
+
+    "phase5c2": {
+      "id": "phase5c2",
+      "phaseNumber": 5,
+      "title": "Phase 5C2 — Information Gaps Affect Decision-Making",
+      "narrative": [
+        "Operations are progressing, but gaps in information are starting to affect decision-making. Issues include incomplete trace-back data from contractors, delayed reporting of symptoms from some properties, and uneven surveillance coverage in outer areas.",
+        "This leads to uncertainty about the true extent of spread and cautious decision-making on destruction in some areas. Some sites are delayed pending further information.",
+        "Workforce effort increases as teams try to close information gaps."
+      ],
+      "question": "Information gaps are causing cautious decision-making and delays. How does your team fill critical gaps to restore confidence in operational decisions?",
+      "criticalElements": [
+        {
+          "id": "cf1_data",
+          "name": "Quality of Trace-back Data",
+          "keywords": ["trace-back", "data quality", "complete", "contractor records", "fill gaps", "obtain", "accurate", "comprehensive", "movement history"]
+        },
+        {
+          "id": "cf2_surveillance",
+          "name": "Surveillance Completeness",
+          "keywords": ["surveillance", "complete", "coverage", "outer areas", "fill gaps", "expand", "prioritise", "comprehensive", "sampling"]
+        },
+        {
+          "id": "cf3_reporting",
+          "name": "Timely Reporting",
+          "keywords": ["reporting", "timely", "prompt", "grower reporting", "early detection", "symptoms", "notify", "report", "update", "regular"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf1": "phase6c"
+      }
+    },
+
+    "phase5c3": {
+      "id": "phase5c3",
+      "phaseNumber": 5,
+      "title": "Phase 5C3 — Growing Pressure from Industry",
+      "narrative": [
+        "Industry pressure is increasing as the response continues. Growers are seeking clear timelines for destruction and disposal, certainty around ORC payments, and confidence that the outbreak is being contained.",
+        "There is increased demand for communication and updates. More time is being spent by field teams engaging with growers. Rising expectations for consistent messaging.",
+        "Despite pressure, most operations continue to function, though at a slower pace in some areas. Coordination is challenged by growing stakeholder demand and decisions are increasingly scrutinised."
+      ],
+      "question": "Industry pressure is diverting field teams from operational tasks. How does your team manage stakeholder demands while keeping operations on track?",
+      "criticalElements": [
+        {
+          "id": "cf1_comms",
+          "name": "Clear Communication",
+          "keywords": ["communicate", "clear", "grower", "industry", "update", "messaging", "advisory", "regular", "transparent", "proactive"]
+        },
+        {
+          "id": "cf2_stakeholder",
+          "name": "Stakeholder Engagement",
+          "keywords": ["stakeholder", "engagement", "grower", "industry", "meet", "consult", "respond", "address concerns", "listen", "feedback"]
+        },
+        {
+          "id": "cf3_consistency",
+          "name": "Consistency of Messaging",
+          "keywords": ["consistent", "messaging", "same message", "aligned", "national", "single voice", "coordination", "unified", "one message"]
+        }
+      ],
+      "branches": {
+        "success": "phase6b",
+        "missed_cf3": "phase6c"
+      }
+    },
+
+    "phase6a": {
+      "id": "phase6a",
+      "phaseNumber": 6,
+      "title": "Phase 6A — Coordinated Recovery",
+      "narrative": [
+        "Destruction and disposal activities are now complete across all known infected properties. Final surveillance confirms no further detections — follow-up sampling across previously infected and high-risk properties shows no new positives. Vector monitoring continues at low levels with no significant spread.",
+        "Trace-back investigations are finalised — movement pathways are well understood, no additional linked properties are identified.",
+        "ORC processing is largely complete — most growers have received payments, a small number of claims are finalised through standard review processes.",
+        "Recovery begins — replanting is approved across cleared properties, growers begin restoring olive and grape production systems, guidance is provided on ongoing biosecurity practices. Industry confidence is stabilising."
+      ],
+      "question": "The response phase is ending and recovery is beginning. What actions does your team take to formally close the response and support a confident recovery?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Completion of Surveillance with Confidence",
+          "keywords": ["final surveillance", "no new detections", "close", "complete", "confidence", "verify", "clearance", "exit surveillance", "confirm free"]
+        },
+        {
+          "id": "cf2_orc",
+          "name": "Timely ORC Closure",
+          "keywords": ["ORC", "finalise", "complete claims", "payment", "close", "resolve", "outstanding", "compensate", "finalise"]
+        },
+        {
+          "id": "cf3_recovery",
+          "name": "Clear Recovery Guidance",
+          "keywords": ["recovery", "replanting", "guidance", "post-response", "future biosecurity", "prevent recurrence", "restore", "plan", "return to production"]
+        }
+      ],
+      "branches": {
+        "success": "END"
+      }
+    },
+
+    "phase6b": {
+      "id": "phase6b",
+      "phaseNumber": 6,
+      "title": "Phase 6B — Delayed and Uneven Recovery",
+      "narrative": [
+        "Destruction is complete, but recovery is uneven across the region. Some properties require extended monitoring due to earlier data gaps, and clearance for replanting is delayed in parts of the region.",
+        "Trace-back is mostly complete, but some movement pathways remain unclear and low-level uncertainty persists in outer areas.",
+        "ORC processing is ongoing — a number of claims remain unresolved, delays in payment are affecting some growers' ability to reinvest.",
+        "Industry sentiment is mixed — confidence is improving in some areas, frustration remains where delays continue."
+      ],
+      "question": "Recovery is uneven and some growers are still waiting for clearance and compensation. How does your team bring the response to a consistent close across all affected areas?",
+      "criticalElements": [
+        {
+          "id": "cf1_surveillance",
+          "name": "Completion of Outstanding Surveillance and Tracing",
+          "keywords": ["complete", "outstanding", "surveillance", "tracing", "close out", "remaining", "finalise", "finish", "resolve gaps"]
+        },
+        {
+          "id": "cf2_orc",
+          "name": "Finalisation of ORC Claims",
+          "keywords": ["ORC", "finalise", "outstanding", "claims", "resolve", "payment", "complete", "close", "unresolved"]
+        },
+        {
+          "id": "cf3_timelines",
+          "name": "Consistent Recovery Timelines",
+          "keywords": ["timeline", "consistent", "recovery", "replanting", "clear timeline", "schedule", "communicate", "certainty", "plan"]
+        }
+      ],
+      "branches": {
+        "success": "END"
+      }
+    },
+
+    "phase6c": {
+      "id": "phase6c",
+      "phaseNumber": 6,
+      "title": "Phase 6C — Ongoing Trust and System Challenges",
+      "narrative": [
+        "The outbreak is contained, but recovery is slow and uneven. Some properties have limited follow-up data and participation in ongoing monitoring is inconsistent.",
+        "Trace-back is incomplete in parts — gaps remain in contractor movement histories, uncertainty persists around some transmission pathways.",
+        "ORC remains a key issue — some claims are delayed or disputed, growers question the fairness and consistency of payments.",
+        "Industry confidence is low — trust in response systems has been impacted and engagement with future biosecurity measures is reduced. Agencies continue to manage surveillance, ORC, and stakeholder issues beyond the expected response period."
+      ],
+      "question": "Trust has been damaged, ORC claims are disputed, and the response has dragged beyond its expected timeline. What does your team do to rebuild confidence and bring the response to a sustainable close?",
+      "criticalElements": [
+        {
+          "id": "cf1_trust",
+          "name": "Rebuilding Trust in Compensation and Response",
+          "keywords": ["trust", "rebuild", "compensation", "ORC", "fair", "transparent", "confidence", "restore", "credibility", "reassure"]
+        },
+        {
+          "id": "cf2_surveillance",
+          "name": "Participation in Surveillance",
+          "keywords": ["surveillance", "participation", "cooperation", "engage", "voluntary", "monitoring", "ongoing", "encourage", "access", "industry"]
+        },
+        {
+          "id": "cf3_traceback",
+          "name": "Completion of Trace-back",
+          "keywords": ["trace-back", "complete", "finalise", "remaining", "pathways", "outstanding", "close out", "confirm", "resolve"]
+        }
+      ],
+      "branches": {
+        "success": "END"
+      }
+    }
+
+  }
+}
