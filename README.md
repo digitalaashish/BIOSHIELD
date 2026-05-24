@@ -35,7 +35,7 @@ BIOShield is a real-time biosecurity emergency response training simulator built
 | Frontend | Vanilla JS, HTML5, CSS3, Chart.js |
 | Database | MySQL 8.0 |
 | AI | Google Gemini 2.5 Flash API |
-| Deployment | Hostinger VPS, PM2, Nginx |
+| Deployment | Hostinger, PM2, Nginx |
 
 ---
 
