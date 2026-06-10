@@ -9,6 +9,7 @@ const http  = require('http');
 const fs    = require('fs');
 const path  = require('path');
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const { WebSocketServer } = require('ws');
 let mammoth = null;
 try { mammoth = require('mammoth'); } catch(e) { console.warn('mammoth not available — DOCX upload will use text fallback'); }
@@ -340,6 +341,34 @@ const adminUser = {
   get email()    { return getSetting('admin_email')    || 'admin@bioshield.gov.au'; },
 };
 
+// ── Password helpers ──────────────────────────────────────────────────────────
+const BCRYPT_ROUNDS = 10;
+function isBcryptHash(s) { return typeof s === 'string' && /^\$2[aby]\$/.test(s); }
+function hashPassword(plain) { return bcrypt.hashSync(String(plain), BCRYPT_ROUNDS); }
+
+// Constant-time string comparison to avoid leaking length/contents via timing.
+function timingSafeEqualStr(a, b) {
+  const ba = Buffer.from(String(a), 'utf8');
+  const bb = Buffer.from(String(b), 'utf8');
+  if (ba.length !== bb.length) return false;
+  return crypto.timingSafeEqual(ba, bb);
+}
+
+// Verify a candidate password against the stored value. Supports bcrypt hashes
+// and (for backward compatibility) legacy plaintext values seeded before hashing
+// was introduced. Legacy plaintext matches are transparently upgraded to a hash.
+function verifyAdminPassword(candidate) {
+  const stored = adminUser.password;
+  if (!stored) return false;
+  if (isBcryptHash(stored)) {
+    try { return bcrypt.compareSync(String(candidate), stored); } catch (e) { return false; }
+  }
+  // Legacy plaintext — constant-time compare, then upgrade to a hash on success.
+  const ok = timingSafeEqualStr(candidate, stored);
+  if (ok) { setSetting('admin_password', hashPassword(candidate)).catch(() => {}); }
+  return ok;
+}
+
 // ── Quiz record helpers ───────────────────────────────────────────────────────
 async function saveQuizRecord(record) {
   try {
@@ -462,10 +491,14 @@ async function deleteScenarioById(scenarioId) {
 initDatabase();
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
+// Cryptographically secure integer in [0, max) — room IDs and passwords are
+// access-control secrets, so they must not be derived from Math.random().
+function secureRandInt(max) { return crypto.randomInt(max); }
+
 function generateId(len = 6) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let id = '';
-  for (let i = 0; i < len; i++) id += chars[Math.floor(Math.random() * chars.length)];
+  for (let i = 0; i < len; i++) id += chars[secureRandInt(chars.length)];
   return id;
 }
 
@@ -474,12 +507,18 @@ function generatePassword() {
   const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
   const digits = '23456789';
   const all = lower + upper + digits;
-  let pw = '';
-  pw += upper[Math.floor(Math.random() * upper.length)];
-  pw += lower[Math.floor(Math.random() * lower.length)];
-  pw += digits[Math.floor(Math.random() * digits.length)];
-  for (let i = 3; i < 7; i++) pw += all[Math.floor(Math.random() * all.length)];
-  return pw.split('').sort(() => Math.random() - 0.5).join('');
+  const out = [
+    upper[secureRandInt(upper.length)],
+    lower[secureRandInt(lower.length)],
+    digits[secureRandInt(digits.length)],
+  ];
+  for (let i = 3; i < 7; i++) out.push(all[secureRandInt(all.length)]);
+  // Cryptographic Fisher–Yates shuffle (not Math.random())
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = secureRandInt(i + 1);
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out.join('');
 }
 
 function generateToken() {
@@ -496,8 +535,8 @@ function parseCookies(cookieStr) {
   return cookies;
 }
 
-function getSession(req) {
-  const cookies = parseCookies(req.headers.cookie);
+function getSessionFromCookieHeader(cookieHeader) {
+  const cookies = parseCookies(cookieHeader);
   const token = cookies['bioshield_session'];
   if (!token) return null;
   const session = sessions.get(token);
@@ -505,6 +544,10 @@ function getSession(req) {
   if (Date.now() - session.lastActive > SESSION_TIMEOUT_MS) { sessions.delete(token); return null; }
   session.lastActive = Date.now();
   return session;
+}
+
+function getSession(req) {
+  return getSessionFromCookieHeader(req.headers.cookie);
 }
 
 function getClientIp(req) {
@@ -940,11 +983,27 @@ const MIME = {
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
 };
 
+const SRC_DIR = path.resolve(__dirname, '..', 'src');
+
+// safeResolve() — resolves a request path inside rootDir and guarantees the
+// result never escapes rootDir. Returns null on any traversal attempt
+// (e.g. "/../api/server.js", URL-encoded "..%2f", or null-byte injection).
+function safeResolve(rootDir, requestedPath) {
+  let decoded;
+  try { decoded = decodeURIComponent(requestedPath); }
+  catch (e) { return null; } // malformed percent-encoding
+  if (decoded.indexOf('\0') !== -1) return null; // null-byte poisoning
+  const full = path.normalize(path.join(rootDir, decoded));
+  if (full !== rootDir && !full.startsWith(rootDir + path.sep)) return null;
+  return full;
+}
+
 function serveStatic(req, res) {
   let filePath = req.url.split('?')[0];
   if (filePath === '/') filePath = '/index.html';
   if (filePath === '/admin') filePath = '/admin.html';
-  const fullPath = path.join(__dirname, '..', 'src', filePath);
+  const fullPath = safeResolve(SRC_DIR, filePath);
+  if (!fullPath) { res.writeHead(403, { 'Content-Type': 'text/plain' }); return res.end('Forbidden'); }
   const ext = path.extname(fullPath);
   const mime = MIME[ext] || 'application/octet-stream';
   const isHtml = ext === '.html';
@@ -1002,7 +1061,8 @@ const server = http.createServer(async (req, res) => {
       const { username, password, roomId, roomPassword, displayName } = await parseBody(req);
 
       if (username && password) {
-        if (username === adminUser.username && password === adminUser.password) {
+        const userMatch = timingSafeEqualStr(username, adminUser.username);
+        if (userMatch && verifyAdminPassword(password)) {
           const token = generateToken();
           sessions.set(token, { userId: 'admin', role: 'admin', username, email: adminUser.email, createdAt: Date.now(), lastActive: Date.now() });
           res.setHeader('Set-Cookie', `bioshield_session=${token}; ${COOKIE_FLAGS}`);
@@ -1219,12 +1279,24 @@ const server = http.createServer(async (req, res) => {
         const titleHeader = req.headers['x-scenario-title'] || '';
         if (!titleHeader) return sendError(res, 'Missing X-Scenario-Title header', 400);
 
+        const MAX_DOCX_BYTES = 15 * 1024 * 1024; // 15MB cap — prevents memory exhaustion
         const chunks = [];
-        await new Promise((resolve, reject) => {
-          req.on('data', c => chunks.push(c));
-          req.on('end', resolve);
-          req.on('error', reject);
-        });
+        let received = 0;
+        let tooLarge = false;
+        try {
+          await new Promise((resolve, reject) => {
+            req.on('data', c => {
+              received += c.length;
+              if (received > MAX_DOCX_BYTES) { tooLarge = true; req.destroy(); return reject(new Error('too large')); }
+              chunks.push(c);
+            });
+            req.on('end', resolve);
+            req.on('error', reject);
+          });
+        } catch (e) {
+          if (tooLarge) return sendError(res, 'File too large — max 15MB', 413);
+          return sendError(res, 'Upload failed', 400);
+        }
         const docxBuffer = Buffer.concat(chunks);
         if (docxBuffer.length < 100) return sendError(res, 'File too small or empty', 400);
 
@@ -1549,7 +1621,7 @@ Respond ONLY with this exact JSON (no markdown, no explanation, no code fences):
       if (req.method === 'POST' && url === '/api/admin/settings') {
         const body2 = await parseBody(req);
         const { newPassword, newEmail, geminiApiKey, siteTitle, siteTagline, geminiModel } = body2;
-        if (newPassword && newPassword.length >= 8) await setSetting('admin_password', newPassword);
+        if (newPassword && newPassword.length >= 8) await setSetting('admin_password', hashPassword(newPassword));
         if (newEmail) await setSetting('admin_email', newEmail);
         if (siteTitle)   await setSetting('site_title',   siteTitle.trim());
         if (siteTagline) await setSetting('site_tagline', siteTagline.trim());
@@ -1602,7 +1674,8 @@ Respond ONLY with this exact JSON (no markdown, no explanation, no code fences):
     // ── UPLOADED ASSETS (logo, favicon) ──────────────────────────────────────
     if (req.method === 'GET' && url.startsWith('/assets/')) {
       const cleanPath = url.split('?')[0];
-      const assetFile = path.join(__dirname, '..', 'src', cleanPath);
+      const assetFile = safeResolve(SRC_DIR, cleanPath);
+      if (!assetFile) return sendError(res, 'Forbidden', 403);
       if (fs.existsSync(assetFile)) {
         const ext = path.extname(assetFile).slice(1).toLowerCase();
         const mime = { png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', svg:'image/svg+xml', ico:'image/x-icon', webp:'image/webp' };
@@ -1633,6 +1706,11 @@ wss.on('connection', (ws, req) => {
   ws._visitorId = null;
   ws._roomId    = null;
   ws._name      = 'Anonymous';
+  // Bind this socket to the authenticated session from the handshake cookie.
+  // Identity (visitorId/roomId) is taken from the server-side session, never
+  // from client-supplied message fields — this prevents leader impersonation
+  // and joining a password-protected room without authenticating first.
+  ws._session = getSessionFromCookieHeader(req.headers.cookie);
 
   ws.on('message', async (raw) => {
     let msg;
@@ -1640,11 +1718,20 @@ wss.on('connection', (ws, req) => {
 
     switch (msg.type) {
       case 'join-room': {
+        // Re-read the session each time in case it was just established.
+        const session = ws._session || getSessionFromCookieHeader(req.headers.cookie);
+        ws._session = session;
+        if (!session || !session.roomId) {
+          return ws.send(JSON.stringify({ type: 'error', error: 'Unauthorized — log in to the room first' }));
+        }
+        if (session.roomId !== msg.roomId) {
+          return ws.send(JSON.stringify({ type: 'error', error: 'Session does not match this room' }));
+        }
         const room = rooms.get(msg.roomId);
         if (!room) return ws.send(JSON.stringify({ type: 'error', error: 'Room not found' }));
         ws._roomId    = msg.roomId;
-        ws._visitorId = msg.visitorId || 'ws-' + Date.now();
-        ws._name      = msg.name || 'Anonymous';
+        ws._visitorId = session.userId;                 // trusted identity
+        ws._name      = session.username || msg.name || 'Anonymous';
         if (!room.members.has(ws._visitorId)) {
           room.members.set(ws._visitorId, { name: ws._name, visitorId: ws._visitorId, joinedAt: Date.now(), role: 'participant' });
         }
